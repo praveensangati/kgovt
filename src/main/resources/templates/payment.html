@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	crossorigin="anonymous" />
+<link th:rel="stylesheet" th:href="@{/css/style1.css}"
+	crossorigin="anonymous" />
+
+<title>Karnataka Govt Application</title>
+<script th:src="@{/js/jquery-3.5.1.slim.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/checkout.js}" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<form th:action="@{/final}" class="form-horizontal" role="form" method="POST">
+	<div>
+	<input type="hidden" id="razorpayPaymentId" name="razorpayPaymentId"/>
+	<input type="hidden" id="razorpayOrderId" name="razorpayOrderId"/>
+	<input type="hidden" id="razorpaySignature" name="razorpaySignature"/>
+	<input type="hidden" id="mobile" name="mobile"/>
+	<input type="hidden" id="receiptNo" name="receiptNo"/>
+	<input type="hidden" id="applicantNumber" name="applicantNumber"/>
+	<input type="hidden" id="amount" name="amount"/>
+	<input type="hidden" id="orderId" name="orderId"/>
+	</div>
+</form>
+</body>
+<script th:inline="javascript">
+/*<![CDATA[*/
+	$('#mobile').val([[${paymentDetails.mobile}]]);
+	$('#receiptNo').val([[${paymentDetails.receiptNo}]]);
+	$('#applicantNumber').val([[${paymentDetails.applicantNumber}]]);
+	$('#amount').val([[${paymentDetails.amount}]]);
+	$('#orderId').val([[${paymentDetails.orderId}]]);
+    var options = {
+    		"key" : [[${paymentDetails.key}]] ,
+    		"amount":[[${paymentDetails.amount}]], // Example: 2000 paise = INR 20
+    		"name" : "Appito",
+    		"description" : [[${paymentDetails.description}]],
+    		"image" : "/img/download.png",
+    		"order_id" : [[${paymentDetails.orderId}]],
+    		"handler" : function(response) {
+    			$('#razorpayPaymentId').val(response.razorpay_payment_id);
+    			$('#razorpayOrderId').val(response.razorpay_order_id);
+    			$('#razorpaySignature').val(response.razorpay_signature);
+    			console.log('response.razorpay_payment_id' + response.razorpay_payment_id)
+    			console.log('response.razorpay_order_id' + response.razorpay_order_id)
+    			console.log('response.razorpay_signature' + response.razorpay_signature)
+    			 $('form').submit();
+    		},
+    		"prefill" : {
+    			"name" : [[${paymentDetails.amount}]], 
+    			"email" : [[${paymentDetails.email}]],
+    			"contact" : [[${paymentDetails.mobile}]]
+    		},
+    		"notes" : {
+    			"address" : [[${paymentDetails.address}]],
+    			"shopping_order_id" : [[${paymentDetails.receiptNo}]]
+    		},
+    		"theme" : {
+    			"color" : "#15b8f3" // screen color
+    		}
+    	};
+    	var propay = new Razorpay(options);
+    	propay.open();
+/*]]>*/
+</script>
+
+</html>
