@@ -10,7 +10,8 @@
 	crossorigin="anonymous" />
 
 <title>Karnataka Govt Application</title>
-<script th:src="@{/js/jquery-3.5.1.slim.min.js}" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<!-- <script th:src="@{/js/jquery-3.5.1.slim.min.js}" crossorigin="anonymous"></script> -->
 <script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script>
 <script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script>
 <script th:src="@{/js/validation.js}" crossorigin="anonymous"></script>
@@ -96,7 +97,7 @@
 								<div id="personDetailId">
 									<div class="form-group">
 										<label>Mobile Number/ಮೊಬೈಲ್ ನಂಬರ *</label> 
-										<input type="text" id="mobile_number" name="mobile" class="form-control" placeholder="Mobile Number/ಮೊಬೈಲ್ ನಂಬರ"> 
+										<input type="text" id="mobile_number" name="mobile" class="form-control" onchange="validateMobile()" placeholder="Mobile Number/ಮೊಬೈಲ್ ನಂಬರ"/> 
 										<small class="form-text text-muted">Register per mobile number </small> 
 										<span id="e_mobile"></span>
 									</div>
@@ -422,6 +423,26 @@
 	  document.getElementById('age').value = today.getFullYear() - dob;
 
 	}
+	
+	
+		function validateMobile(){
+			  let mobileNo = $('#mobile_number').val();
+			  if(mobileNo ){
+				  $.ajax({
+					  type: 'POST',
+					  url: "/validateMobile?mobileNumber="+mobileNo,
+					  contentType: "application/json; charset=utf-8",
+					  data: {
+					  },
+					  success: function( result ) {
+					   if(result == '1'){
+						   alert('1');
+					   }
+					  }
+					});
+				}  
+			  }
+	
 </script>   
 
     </body>

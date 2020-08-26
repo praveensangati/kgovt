@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kgovt.models.ApplicationDetailes;
@@ -73,8 +74,9 @@ public class AppicationController extends AppConstants{
 		return "form2";
 	}
 	
-	@GetMapping("/validateMobile")
-	public String checkMobileExiastes(String mobileNumber) {
+	@PostMapping("/validateMobile")
+	@ResponseBody
+	public String checkMobileExiastes(@RequestParam String mobileNumber) {
 		Long mobileCount = appicationService.countByMobile(Long.valueOf(mobileNumber));
 		if(mobileCount > 0) {
 			return "1";
