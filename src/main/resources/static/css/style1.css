@@ -27,6 +27,7 @@ nav a{
 }
 
 .custCentDivMD{
+   
     min-height: 400px;
     max-height: 600px;
     text-align: left;
@@ -49,17 +50,9 @@ nav a{
 }
  p#innerPara{padding:20px ;}
  legend{width:200px;padding:10px 20px;}
+ 
 
-
-.footerDiv{
-    min-height: 100px;
-    text-align: left;
-    background-color: rgb(72, 72, 73);
-    margin-top: 2%;
-    margin-top: 0ch;
-}
-
-input[type=number] {
+ input[type=number] {
   -moz-appearance: textfield;
 }
 
@@ -68,3 +61,15 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.bs-example{
+    	margin: 0px;
+    }
+
+p{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align:justify ;
+}
+
+.card {display:inline-block;} 

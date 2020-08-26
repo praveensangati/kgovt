@@ -49,6 +49,16 @@ public class AppicationController extends AppConstants{
 		return "index";
 	}
 	
+	@GetMapping("/contact")
+	public String contactPage() {
+		return "contact";
+	}
+	
+	@GetMapping("/offline")
+	public String offlinePage() {
+		return "offline";
+	}
+	
 	@GetMapping(SEPERATOR+COMMON_NEW)
 	public String applicationNew(Model model) {
 		ApplicationDetailes appDetails = new ApplicationDetailes();
@@ -123,6 +133,7 @@ public class AppicationController extends AppConstants{
 		if(null != status && paymentDetails.getRazorpaySignature().equals(status)) {
 			try {
 				paymentDetails.setCreatedDate(new Date());
+				paymentDetails.setStatus("Success");
 				paymentDetailsRepository.save(paymentDetails);
 				model.addAttribute("paymentDetails" , paymentDetails);
 				model.addAttribute("successMessage" , "Application Submitted Successfully");

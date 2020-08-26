@@ -74,4 +74,6 @@ public class PaymentDetails implements Serializable, Cloneable {
 	@Transient
 	private String description;
 	
+	private String status;
+	
 }
