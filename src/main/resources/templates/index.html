@@ -137,5 +137,41 @@
       </div>
   </div> -->
 </div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+ 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Application Status</h2>
+    </div>
+    <div class="modal-body">
+      <span id="msgContent"></span>
+    </div>
+  </div>
+  </div>
+
+
 </body>
+<script th:inline="javascript">
+/*<![CDATA[*/
+	var modal = document.getElementById("myModal");
+	try {
+	let failStatus = [[${failure}]];
+		if(!failStatus) {
+			 modal.style.display = "block";
+			 document.getElementById("msgContent").innerHTML = failStatus;
+		}
+	}catch(e) {
+	}
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+/*]]>*/
+</script>
 </html>

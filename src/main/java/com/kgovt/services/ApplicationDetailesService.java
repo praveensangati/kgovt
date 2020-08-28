@@ -115,9 +115,14 @@ public class ApplicationDetailesService extends AppConstants{
 			applicationDetailes.setCreationDate(new Date());
 			applicationDetailes = saveApplicationDetailes(applicationDetailes);
 		}catch(Exception e) {
+			e.printStackTrace();
 			log.error("Exeption while saving application", e);
 		}
 		return applicationDetailes;
+	}
+	
+	public void removeApplicationDetailes(Long applicationNo)  {
+		 applicationDetailesRepository.deleteByApplicantNumber(applicationNo);
 	}
 	
 	public PaymentDetails proceedForPayment(PaymentDetails paymentDetails) {

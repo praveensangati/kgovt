@@ -74,6 +74,17 @@ public class AppicationController extends AppConstants{
 		return "form2";
 	}
 	
+	@GetMapping("/redirectIndex")
+	public String redirectIndex(Model model, PaymentDetails paymentDetails){
+		try {
+			model.addAttribute("failure" , "Payment Failed");
+			appicationService.removeApplicationDetailes(paymentDetails.getApplicantNumber());
+		}catch(Exception e) {
+			logger.error("Exception while saving aapplication", e);	
+		}
+		return "index";
+	}
+	
 	@PostMapping("/validateMobile")
 	@ResponseBody
 	public String checkMobileExiastes(@RequestParam String mobileNumber) {

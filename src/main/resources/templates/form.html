@@ -425,9 +425,10 @@
 	}
 	
 	
-		function validateMobile(){
-			  let mobileNo = $('#mobile_number').val();
-			  if(mobileNo ){
+	function validateMobile(){
+		  let mobileNo = $('#mobile_number').val();
+		  if(mobileNo){
+			  if(/^[1-9][0-9]{9}$/.test(mobileNo) && mobileNo.length == 10){
 				  $.ajax({
 					  type: 'POST',
 					  url: "/validateMobile?mobileNumber="+mobileNo,
@@ -436,12 +437,35 @@
 					  },
 					  success: function( result ) {
 					   if(result == '1'){
-						   alert('1');
+						   $('#e_mobile').hide();
+						   $('#mobile_number').focus();
+						   $('#mobile_number').val('');
+						   initialDisable();
+						   alert("Application is already registered to ph:"+mobileNo+", Kindly proceed to status section or use new number to apply");
+					   }
+					   else{
+						   $("#personal :input").each(function() {
+								$(this).prop('disabled',false);
+							});
 					   }
 					  }
-					});
-				}  
-			  }
+					});					  
+			  }else {
+					$('#mobile_number').focus();
+					$('#mobile_number').val('');
+			        document.getElementById('e_mobile').innerHTML = "**Enter a valid Mobile Number";
+			        document.getElementById('e_mobile').style.color = 'red';
+				}
+			}  
+		  }
+	
+	function initialDisable() {
+		$("#personal :input").each(function() {
+			$(this).prop('disabled',true);
+		});
+		$('#mobile_number').prop('disabled',false);
+	}
+	initialDisable();
 	
 </script>   
 

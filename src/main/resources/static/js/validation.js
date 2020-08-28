@@ -577,3 +577,8 @@ function fileValidation() {
       return false; 
   }  
 } 
+
+$('#navbarNav a').click(function(){
+	$('#navbarNav a').removeClass('activeClass');
+	$(this).addClass("activeClass");
+});

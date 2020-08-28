@@ -28,8 +28,8 @@ nav a{
 
 .custCentDivMD{
    
-    min-height: 400px;
-    max-height: 600px;
+   
+    max-height: 450px;
     text-align: left;
     
     margin-top: 1ch;
@@ -73,3 +73,123 @@ p{
 }
 
 .card {display:inline-block;} 
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    float: left;
+    width: 100px;
+    margin-left: 15px
+}
+
+.headerDiv .font-weight-normal {
+    font-size: 4ch !important;
+    text-align: center !important;
+}
+
+.custRightDivMD li {
+	line-break: anywhere;
+}
+
+#navbarNav {
+	height: 25px;
+}
+.custLeftDivMD {
+    max-height: 150px !important
+	min-height: 0px !important
+}
+
+.custRightDivMD {
+	max-height: 200px !important
+	min-height: 0px !important
+}
+
+#navbarNav a{
+	color: #41414a !important
+}
+
+.activeClass {
+	text-decoration-line: underline;
+	text-decoration-style: solid
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+.modal-header {
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: red;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+ }

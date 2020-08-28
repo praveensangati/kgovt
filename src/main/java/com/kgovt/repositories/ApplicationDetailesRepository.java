@@ -14,5 +14,5 @@ public interface ApplicationDetailesRepository extends JpaRepository<Application
 	@Query(value = "SELECT max(applicantNumber) from ApplicationDetailes")
 	Long max();
 	
-
+	long deleteByApplicantNumber(long ApplicantNumber);
 }
