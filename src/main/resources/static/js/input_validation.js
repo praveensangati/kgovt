@@ -1,23 +1,21 @@
 
 
 $('#mobile_number').inputmask('Regex', { 
-    regex: "^[1-9][0-9]{9}$"
+	regex: "^[1-9][0-9]{9}|[+][9][1][1-9][0-9]{9}$"
 });
 
-$('#sponsor').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{40}$"
-});
+
 
 $('#name').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{30}[]$"
+	regex: "^[a-zA-Z][a-zA-Z ]{30}[]$"
 });
 
 $('#father_name').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{30}$"
+	 regex: "^[a-zA-z][a-zA-Z ]{30}$"
 });
 
 $('#mother_name').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{30}$"
+	 regex: "^[a-zA-z][a-zA-Z ]{30}$"
 });
 
 $('#age').inputmask('Regex', { 
@@ -25,6 +23,10 @@ $('#age').inputmask('Regex', {
 });
 
 $('#religion').inputmask('Regex', { 
+    regex: "^[a-zA-Z]{10}$"
+});
+
+$('#nationality').inputmask('Regex', { 
     regex: "^[a-zA-Z]{10}$"
 });
 
@@ -38,14 +40,14 @@ $('#email').inputmask('Regex', {
 
 
 $('#sslc_institution').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{40}$"
+    regex: "^[a-zA-z][a-zA-Z ]{40}$"
 
 });
 
 
 
 $('#sslc_marks').inputmask('Regex', { 
-    regex: "^[1-9][0-9][0-9]$"
+    regex: "^[1-9][0-9][0-9][0-9]$"
 
 });
 
@@ -55,7 +57,7 @@ $('#sslc_percentage').inputmask('Regex', {
 });
 
 $('#puc_institution').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{40}$"
+    regex: "^[a-zA-z][a-zA-Z ]{40}$"
 
 });
 
@@ -71,7 +73,7 @@ $('#puc_percentage').inputmask('Regex', {
 
 });
 $('#ug_institution').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{40}$"
+    regex: "^[a-zA-z][a-zA-Z ]{40}$"
 
 });
 
@@ -87,7 +89,7 @@ $('#ug_percentage').inputmask('Regex', {
 
 });
 $('#ug_institution').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{40}$"
+    regex: "^[a-zA-z][a-zA-Z ]{40}$"
 
 });
 
@@ -104,7 +106,7 @@ $('#ug_percentage').inputmask('Regex', {
 });
 
 $('#pg_institution').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{40}$"
+    regex: "^[a-zA-z][a-zA-Z ]{40}$"
 
 });
 
@@ -123,7 +125,7 @@ $('#pg_percentage').inputmask('Regex', {
 
 
 $('#deputy_scoiety').inputmask('Regex', { 
-    regex: "^[a-zA-Z ]{100}$"
+    regex: "^[a-zA-z][a-zA-Z ]{100}$"
 
 });
 
@@ -143,4 +145,20 @@ $('#pincode_office').inputmask('Regex', {
     regex: "^[1-9][0-9]{5}$"
 
 });
-  
+
+$('.yearpicker').yearpicker({
+
+    year: null,
+
+    // Start Year
+    startYear: 1970,
+
+    // End Year
+    endYear: 2020,
+});
+$('.yearpicker').yearpicker({
+
+    onShow:null,
+    onHide:null,
+    onChange:null
+    });

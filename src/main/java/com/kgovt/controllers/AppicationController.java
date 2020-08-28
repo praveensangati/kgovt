@@ -60,6 +60,11 @@ public class AppicationController extends AppConstants{
 		return "offline";
 	}
 	
+	@GetMapping("/status")
+	public String status(){
+		return "status";
+	}
+	
 	@GetMapping(SEPERATOR+COMMON_NEW)
 	public String applicationNew(Model model) {
 		ApplicationDetailes appDetails = new ApplicationDetailes();
@@ -100,11 +105,12 @@ public class AppicationController extends AppConstants{
 	public String saveApplication(Model model, ApplicationDetailes applicationDetailes, HttpServletRequest request,
 			@RequestParam("sslcFile") MultipartFile sslcFile, @RequestParam("pucFile") MultipartFile pucFile, @RequestParam("ugFile") MultipartFile ugFile
 			, @RequestParam("pgFile") MultipartFile pgFile, @RequestParam("photoFile") MultipartFile photoFile
-			, @RequestParam("addressFile") MultipartFile addressFile, @RequestParam("certificateFile") MultipartFile certificateFile) {
+			, @RequestParam("addressFile") MultipartFile addressFile, @RequestParam("certificateFile") MultipartFile certificateFile
+			, @RequestParam("nocFile") MultipartFile nocFile, @RequestParam("signatureFile") MultipartFile signatureFile) {
 		try {
 			applicationDetailes = appicationService.saveApplicationAction(applicationDetailes,sslcFile,
 					 pucFile, ugFile, pgFile, photoFile,addressFile,
-					certificateFile);
+					certificateFile,nocFile,signatureFile);
 			if(null == applicationDetailes) {
 				model.addAttribute("errorMessage" , "Ooops Unexpected Error occured while saving Application, Please contact System Administrator !");
 				return "error";

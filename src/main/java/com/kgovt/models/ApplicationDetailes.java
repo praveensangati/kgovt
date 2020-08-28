@@ -73,8 +73,8 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	
 	private Long mobile;
 	
-	@Column(name = "farther_name")
-	private String fartherName;
+	@Column(name = "father_name")
+	private String fatherName;
 	
 	@Column(name = "mother_name")
 	private String motherName;
@@ -83,17 +83,17 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	
 	public String name;
 	
-	@Column(name = "noc_file_name")
-	public String nocFileName;
-	
 	@Column(name = "pg_file_name")
 	public String pgFileName;
 	
 	@Column(name = "pg_institution")
 	public String pgInstitution;
 	
-	@Column(name = "pg_marks")
+	@Column(name = "pg_marks_obtained")
 	public String pgMarks;
+	
+	@Column(name = "pg_marks_total")
+	public String pgTotalMarks;
 	
 	@Column(name = "pg_passing_year_month")
 	public String pgPassingYearMonth;
@@ -115,8 +115,11 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	@Column(name = "puc_institution")
 	public String pucInstitution;
 	
-	@Column(name = "puc_marks")
+	@Column(name = "puc_marks_obtained")
 	public String pucMarks;
+	
+	@Column(name = "puc_marks_total")
+	public String pucTotalMarks;
 	
 	@Column(name = "puc_passing_year_month")
 	public String pucPassingYearMonth;
@@ -132,19 +135,12 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	@Column(name = "service_cert_file_name")
 	public String serviceCertFileName;
 	
+	@Column(name = "gender")
 	public String gender;
-	
-	@Column(name = "signature_file_name")
-	public String signatureFileName;
 	
 	@Column(name = "society_address")
 	public String societAddress;
 	
-	@Column(name = "society_district")
-	public String societyDistrict;
-	
-	@Column(name = "society_email")
-	public String societyEmail;
 	
 	@Column(name = "society_name")
 	public String societyName;
@@ -152,19 +148,12 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	@Column(name = "society_pincode")
 	public String societyPincode;
 	
-	@Column(name = "society_post")
-	public String societyPost;
 	
 	@Column(name = "society_pre_of_service")
 	public String societyPreOfService;
 	
-	@Column(name = "society_taluk")
-	public String societyTaluk;
-	
 	@Column(name = "society_tel_number")
 	public String societyTelNumber;
-	
-	public String sponsor;
 	
 	@Column(name = "sslc_file_name")
 	public String sslcFileName;
@@ -172,8 +161,11 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	@Column(name = "sslc_institution")
 	public String sslcInstitution;
 	
-	@Column(name = "sslc_marks")
+	@Column(name = "sslc_marks_obtained")
 	public String sslcMarks;
+	
+	@Column(name = "sslc_marks_total")
+	public String sslcTotalMarks;
 	
 	@Column(name = "sslc_passing_year_month")
 	public String sslcPassingYearMonth;
@@ -187,8 +179,11 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	@Column(name = "ug_institution")
 	public String ugInstitution;
 	
-	@Column(name = "ug_marks")
+	@Column(name = "ug_marks_obtained")
 	public String ugMarks;
+	
+	@Column(name = "ug_marks_total")
+	public String ugTotalMarks;
 	
 	@Column(name = "ug_passing_year_month")
 	public String ugPassingYearMonth;
@@ -197,7 +192,6 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	public String ugPercentage;
 	
 	public Boolean declarationAccepted = false;
-	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -220,5 +214,9 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	private MultipartFile addressFile;
 	@Transient
 	private MultipartFile certificateFile;
+	@Transient
+	private MultipartFile nocFile;
+	@Transient
+	private MultipartFile signatureFile;
 
 }

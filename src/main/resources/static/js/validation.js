@@ -1,5 +1,73 @@
 $(function(){
 
+	$('#sslc_totalmarks').change(function(){
+
+	    var obtained = document.getElementById('sslc_marks').value;
+	    var total = document.getElementById('sslc_totalmarks').value;
+
+	    if(parseInt(obtained) < parseInt(total)){
+
+	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
+	    }else{
+	      alert('obtained marks cannot be more than total marks.Re-Enter your marks');
+	      
+	       document.getElementById('sslc_marks').value='';
+	   document.getElementById('sslc_totalmarks').value='';
+	   document.getElementById('sslc_marks').focus();
+	    }
+
+	  });
+	  $('#puc_totalmarks').change(function(){
+
+	    var obtained = document.getElementById('puc_marks').value;
+	    var total = document.getElementById('puc_totalmarks').value;
+
+	    if(parseInt(obtained) < parseInt(total)){
+
+	      document.getElementById('puc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
+	    }else{
+	      alert('obtained marks cannot be more than total marks.Re-Enter your marks');
+	      
+	      document.getElementById('puc_marks').value='';
+	      document.getElementById('puc_totalmarks').value='';
+	      document.getElementById('puc_marks').focus();
+
+	    }
+
+	  });
+	  $('#ug_totalmarks').change(function(){
+
+	    var obtained = document.getElementById('ug_marks').value;
+	    var total = document.getElementById('ug_totalmarks').value;
+
+	    if(parseInt(obtained) < parseInt(total)){
+
+	      document.getElementById('ug_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
+	    }else{
+	      alert('obtained marks cannot be more than total marks.Re-Enter your marks');
+	       document.getElementById('ug_marks').value='';
+	      document.getElementById('ug_totalmarks').value='';
+	      document.getElementById('ug_marks').focus();
+	    }
+
+	  });
+	  $('#pg_totalmarks').change(function(){
+
+	    var obtained = document.getElementById('pg_marks').value;
+	    var total = document.getElementById('pg_totalmarks').value;
+
+	    if(parseInt(obtained) < parseInt(total)){
+
+	      document.getElementById('pg_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
+	    }else{
+	      alert('obtained marks cannot be more than total marks.Re-Enter your marks');
+	     document.getElementById('pg_marks').value='';
+	      document.getElementById('pg_totalmarks').value='';
+	      document.getElementById('pg_marks').focus(); 
+	    }
+
+	  });
+	  
     $('#changetabbutton1').click(function(e){
       
       
@@ -7,7 +75,6 @@ $(function(){
       
       var mobileNumber = document.getElementById('mobile_number').value;
       var poc = document.getElementById('poc').value;
-      var sponsor = document.getElementById('sponsor').value;
       var name = document.getElementById('name').value;
       var f_name = document.getElementById('father_name').value;
       var m_name = document.getElementById('mother_name').value;
@@ -173,24 +240,10 @@ $(function(){
       else
         document.getElementById('e_name').innerHTML = "";
 
-
-      if(document.getElementById('sponsor').value == ''){
-        document.getElementById('sponsor').focus();
-        document.getElementById('e_sponsor').innerHTML = "**Enter Sponsoring Co-Operating Society";
-        document.getElementById('e_sponsor').style.color = 'red';
-        flag = 1;
-      }
-      
-      else
-        document.getElementById('e_sponsor').innerHTML = "";
-
-
       if(document.getElementById('poc').value == 'Choose...'){
-
         document.getElementById('poc').focus();
         document.getElementById('e_poc').innerHTML = "**Choose an Option";
         document.getElementById('e_poc').style.color = 'red';
-
       }
       
       else
@@ -313,6 +366,50 @@ $(function(){
        }
     });
 
+    $('#doa').click(function(){
+
+        var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+   if(dd<10){
+          dd='0'+dd
+      } 
+      if(mm<10){
+          mm='0'+mm
+      } 
+
+  today = yyyy+'-'+mm+'-'+dd;
+  document.getElementById("doa").setAttribute("max", today);
+      })
+      
+      $('#doa').change(function(){
+
+        console.log(document.getElementById('doa').value);
+      
+
+
+        var year_entered = parseInt(document.getElementById('doa').value.substr(0,4));
+        console.log('year'+' '+year_entered+typeof(year_entered));
+
+        var month_entered = parseInt(document.getElementById('doa').value.substr(5,7));
+        console.log('month'+ ' '+month_entered+typeof(month_entered));
+
+
+        var date = new Date();
+        
+        if (month_entered > (date.getMonth() + 1)){
+
+          document.getElementById('period_of_service').value = (date.getFullYear() - year_entered -1) + 'y ' + (12+( (date.getMonth() +1)-month_entered))+ 'm';
+
+        } 
+        else {
+          document.getElementById('period_of_service').value = (date.getFullYear() - year_entered) + 'y ' + ((date.getMonth() +1)-month_entered)+ 'm';
+
+
+        }
+      });
+    
     $('#changetabbutton3').click(function(e){
         e.preventDefault();
 
@@ -447,13 +544,15 @@ $(function(){
         e.preventDefault();
         var flag = 0;
         var photoUp = document.getElementById('photo').value;
+        var nocUp = document.getElementById('noc_certificate').value;
         var addressUp = document.getElementById('address_proof').value;
-        var certificateUp = document.getElementById('e_certificate').value;
+        var certUp = document.getElementById('e_certificate').value;
+        var signatureUp = document.getElementById('signature').value;
         
         if( photoUp == ''){
           document.getElementById('photo').focus();
-  
-          document.getElementById('e_photo').innerHTML = "**Upload Photo";
+          // change 5 e_photo
+          document.getElementById('e_photo').value = 'Photo is required ';
           document.getElementById('e_photo').style.color = 'red';
           
           flag = 1;
@@ -462,33 +561,61 @@ $(function(){
           document.getElementById('e_photo').innerHTML = "";
   
         }
-        
+
+        if( nocUp == ''){
+          document.getElementById('noc_certificate').focus();
+          // change 5 e_photo
+          document.getElementById('e_noc').value = 'NOC is required ';
+          document.getElementById('e_noc').style.color = 'red';
+          
+          flag = 1;
+        }
+        else {
+          document.getElementById('e_noc').innerHTML = "";
+  
+        }
+
         if( addressUp == ''){
-            document.getElementById('address_proof').focus();
-    
-            document.getElementById('e_address12').innerHTML = "**Upload Photo";
-            document.getElementById('e_address12').style.color = 'red';
-            
-            flag = 1;
-          }
-          else {
-            document.getElementById('e_address12').innerHTML = "";
-    
-          }
+          document.getElementById('address_proof').focus();
+          // change 5 e_photo
+          document.getElementById('e_address12').value = 'NOC is required ';
+          document.getElementById('e_address12').style.color = 'red';
+          
+          flag = 1;
+        }
+        else {
+          document.getElementById('e_address12').innerHTML = "";
+  
+        }
         
-        if( certificateUp == ''){
-            document.getElementById('e_certificate').focus();
-    
-            document.getElementById('e_empolyee').innerHTML = "**Upload Photo";
-            document.getElementById('e_empolyee').style.color = 'red';
-            
-            flag = 1;
-          }
-          else {
-            document.getElementById('e_empolyee').innerHTML = "";
-    
-          }
-        
+        if( certUp == ''){
+          document.getElementById('e_certificate').focus();
+          // change 5 e_photo
+          document.getElementById('e_empolyee').value = 'NOC is required ';
+          document.getElementById('e_empolyee').style.color = 'red';
+          
+          flag = 1;
+        }
+        else {
+          document.getElementById('e_empolyee').innerHTML = "";
+  
+        }
+
+        if( signatureUp == ''){
+          document.getElementById('signature').focus();
+          // change 5 e_photo
+          document.getElementById('e_sig').value = 'NOC is required ';
+          document.getElementById('e_sig').style.color = 'red';
+          
+          flag = 1;
+        }
+        else {
+          document.getElementById('e_sig').innerHTML = "";
+  
+        }
+
+
+
         if(flag == 0) {
         $('#mytabs a[href="#declaration"]').tab('show');
         }
@@ -524,20 +651,35 @@ $('#changetabbutton9').click(function(e){
 
 
 function ValidateSize(file) {
-	try{
     var FileSize = file.files[0].size / 1024 / 1024; // in MB
+    //console.log(file.files[0].filePath);
+    console.log('asd');
+
     if (FileSize > 2) {
         alert('File size exceeds 2 MB');
-       // $(file).val(''); //for clearing with Jquery
-		file.value='';			 
-    } else {
+        $(file).val(''); //for clearing with Jquery
+       
+       console.log('asd');
+    } 
+    
+    else {
 
     }
-	}catch(e){
-		
-	}
+      var filePath = file.value; 
+      var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; 
+        
+      if (!allowedExtensions.exec(filePath)) { 
+          alert('Invalid file type'); 
+          file.value = ''; 
+          return false; 
+      }   
 }
 
+function ageCal(){
+	  var dob = parseInt(document.getElementById('dob').value.substring(0,4));
+	  var today = new Date();
+	  document.getElementById('age').value = today.getFullYear() - dob;
+	}
 
 function Service(){
 
@@ -562,21 +704,55 @@ function changestatus(){
 }
 
 function fileValidation() { 
-  var fileInput =  
-      document.getElementById('file'); 
-    
-  var filePath = fileInput.value; 
+	  var fileInput =  
+	      document.getElementById('file'); 
+	    
+	  var filePath = fileInput.value; 
 
-  // Allowing file type 
-  var allowedExtensions =  
-/(\.pdf)$/i; 
-    
-  if (!allowedExtensions.exec(filePath)) { 
-    document.getElementById('e_pincode_office').innerHTML = "**Enter correct typr of file";
-      fileInput.value = ''; 
-      return false; 
-  }  
-} 
+	  // Allowing file type 
+	  var allowedExtensions =  
+	/(\.pdf)$/i; 
+	    
+	  if (!allowedExtensions.exec(filePath)) { 
+	    document.getElementById('e_pincode_office').innerHTML = "**Enter correct typr of file";
+	      fileInput.value = ''; 
+	      return false; 
+	  }  
+	}
+
+function disableEnterKey(e){ 
+	 
+	  var key; 
+	   
+	      if(window.event){ 
+	        
+	      key = window.event.keyCode; 
+	        
+	      } else { 
+	        
+	      key = e.which;      
+	      } 
+	        
+	      if(key == 13){ 
+	        
+	      return false; 
+	        
+	      } else { 
+	        
+	      return true; 
+	      } 
+	  } 
+
+	  function year(){
+	    var year = document.getElementById('year');
+	    var today = new Date();
+	    
+	    for(i=today.getFullYear(); i <= 1970; i--){
+
+	      year.add
+
+	    }
+	  }
 
 $('#navbarNav a').click(function(){
 	$('#navbarNav a').removeClass('activeClass');

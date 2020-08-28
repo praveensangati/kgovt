@@ -48,7 +48,7 @@ public class ApplicationDetailesService extends AppConstants{
 	
 	public ApplicationDetailes saveApplicationAction(ApplicationDetailes applicationDetailes,MultipartFile sslcFile,
 			MultipartFile pucFile, MultipartFile ugFile, MultipartFile pgFile, MultipartFile photoFile, MultipartFile addressFile,
-			MultipartFile certificateFile) {
+			MultipartFile certificateFile,MultipartFile nocFile,MultipartFile signatureFile) {
 		try {
 			if(!sslcFile.isEmpty()) {
 				String sslcFilePath = fileUploadAndReturn(sslcFile, String.valueOf(applicationDetailes.getMobile()), "SSLC");
@@ -94,6 +94,20 @@ public class ApplicationDetailesService extends AppConstants{
 			
 			if(!certificateFile.isEmpty()) {
 				String filePath = fileUploadAndReturn(certificateFile, String.valueOf(applicationDetailes.getMobile()), "CERTIFICATE");
+				if(AppUtilities.isNotNullAndNotEmpty(filePath)) {
+					applicationDetailes.setServiceCertFileName(filePath);
+				}	
+			}
+			
+			if(!nocFile.isEmpty()) {
+				String filePath = fileUploadAndReturn(nocFile, String.valueOf(applicationDetailes.getMobile()), "Noc");
+				if(AppUtilities.isNotNullAndNotEmpty(filePath)) {
+					applicationDetailes.setServiceCertFileName(filePath);
+				}	
+			}
+			
+			if(!signatureFile.isEmpty()) {
+				String filePath = fileUploadAndReturn(signatureFile, String.valueOf(applicationDetailes.getMobile()), "Signature");
 				if(AppUtilities.isNotNullAndNotEmpty(filePath)) {
 					applicationDetailes.setServiceCertFileName(filePath);
 				}	
