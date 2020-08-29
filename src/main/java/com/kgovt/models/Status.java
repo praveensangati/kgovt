@@ -51,5 +51,5 @@ public class Status  implements Serializable, Cloneable{
 	@Column(name = "applicant_number")
 	public long applicantNumber;
 	
-	private String mobile ;
+	private Long mobile ;
 }

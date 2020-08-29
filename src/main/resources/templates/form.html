@@ -25,6 +25,7 @@
 </head>
 
 <body>
+<span id="modalHTml"></span>
 	<div class="modal fade right" id="modalAbandonedCart" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 		data-backdrop="false">
@@ -93,7 +94,7 @@
 							Page</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/new}">Apply
 							Online</a></li>
-					<li class="nav-item"><a class="nav-link" href="@{/status}">Status</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/status}">Status</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact
 							Us</a></li>
 				</ul>
@@ -543,11 +544,13 @@
 									if (result == '1') {
 										$('#e_mobile').hide();
 										$('#mobile_number').focus();
+										let mblumber = $('#mobile_number').val(); 
 										$('#mobile_number').val('');
 										initialDisable();
-										alert("Application is already registered to ph:"
-												+ mobileNo
-												+ ", Kindly proceed to status section or use new number to apply");
+										$('#modalHTml').html(statusHTML);
+										let msg = 'Application has been submitted with the mobile number '+mblumber+'. Please check status for update';
+										$('#applicantReg').html(msg);
+										$('#applicationStatus').modal('show');
 									} else {
 										$("#personal :input").each(function() {
 											$(this).prop('disabled', false);
@@ -575,6 +578,65 @@
 		}
 		initialDisable();
 	</script>
+	
+	<script type="text/javascript"> 
+    let statusHTML = `<div class="modal fade right" id="applicationStatus" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="false">
+		<div
+			class="modal-dialog modal-side modal-bottom-right modal-notify modal-info"
+			role="document">
+			<!--Content-->
+			<div class="modal-content">
+				<!--Header-->
+				<div class="modal-header">
+					<p class="heading" style="padding-left: 10%;">
+					<h2>Already Registered.!!!</h2>
+					</p>
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true" class="white-text">&times;</span>
+					</button>
+				</div>
+
+				<!--Body-->
+				<div class="modal-body">
+
+					<div class="row">
+						<div class="col-3">
+							<p></p>
+							<p class="text-center">
+								<i class="fas fa-shopping-cart fa-4x"></i>
+							</p>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item"><span
+								id="applicantReg"></span>
+							</li>
+						</ul>
+						<div></div>
+					</div>
+				</div>
+
+				<!--Footer-->
+				<div class="modal-footer justify-content-center">
+					<!-- <a type="button" class="btn btn-info" href="form.html">Proceed</a>   -->
+					<h3>Help Line</h3>
+					<ul>
+						<li><small>Phone no: +91 8892075276,+91
+								8660193339</small></li>
+						<li><small>E-mail: apitotechnologies@gmail.com</small></li>
+					</ul>
+					<br> <a type="button"
+						class="btn btn-outline-info waves-effect"
+						data-dismiss="modal" href="#">Cancel</a>
+				</div>
+			</div>
+
+		</div>`;
+
+</script>
 
 </body>
 

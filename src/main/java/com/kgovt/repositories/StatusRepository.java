@@ -7,6 +7,6 @@ import com.kgovt.models.Status;
 
 public interface StatusRepository extends JpaRepository<Status, Integer> {
 
-	
+	Status findByMobile(Long mobile);
 
 }

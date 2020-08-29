@@ -7,7 +7,7 @@ import com.kgovt.models.ApplicationDetailes;
 
 public interface ApplicationDetailesRepository extends JpaRepository<ApplicationDetailes, Integer> {
 
-	ApplicationDetailes findByApplicantNumber(String applicantNumber);
+	ApplicationDetailes findByApplicantNumber(Long applicantNumber);
 	
 	Long countByMobile(Long mobile);
 	

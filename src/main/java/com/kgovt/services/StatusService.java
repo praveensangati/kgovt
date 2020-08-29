@@ -23,6 +23,9 @@ public class StatusService extends AppConstants{
 		return status;
 	}
 	
+	public Status findByMobile(Long mobile) {
+		return statusRepository.findByMobile(mobile);
+	}
 
 	
 }

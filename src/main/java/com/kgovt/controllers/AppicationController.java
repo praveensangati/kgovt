@@ -1,7 +1,11 @@
 package com.kgovt.controllers;
 
 import java.security.SignatureException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -16,15 +20,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kgovt.models.ApplicationDetailes;
 import com.kgovt.models.PaymentDetails;
-import com.kgovt.repositories.PaymentDetailsRepository;
+import com.kgovt.models.Status;
 import com.kgovt.services.ApplicationDetailesService;
+import com.kgovt.services.PaymentDetailsService;
+import com.kgovt.services.StatusService;
 import com.kgovt.utils.AppConstants;
 import com.kgovt.utils.AppUtilities;
 
@@ -38,17 +43,15 @@ public class AppicationController extends AppConstants{
 	private ApplicationDetailesService appicationService;
 	
 	@Autowired
-	private PaymentDetailsRepository paymentDetailsRepository;
+	private PaymentDetailsService paymentDetailsService;
+	
+	@Autowired
+	private StatusService statusService;
 	
 	private static final String HMAC_SHA256_ALGORITHM = "HmacSHA256";
 	
 	@GetMapping(SEPERATOR)
 	public String getApplicationHome(Model model) {
-		return "index";
-	}
-	
-	@GetMapping(SEPERATOR+COMMON_INDEX)
-	public String indexPage() {
 		return "index";
 	}
 	
@@ -74,13 +77,6 @@ public class AppicationController extends AppConstants{
 		return "form";
 	}
 	
-	@GetMapping("/test")
-	public String applicationNew2(Model model) {
-		ApplicationDetailes appDetails = new ApplicationDetailes();
-		model.addAttribute("applicationDetailes" , appDetails);
-		return "form2";
-	}
-	
 	@GetMapping("/redirectIndex")
 	public String redirectIndex(Model model, PaymentDetails paymentDetails){
 		try {
@@ -89,8 +85,15 @@ public class AppicationController extends AppConstants{
 		}catch(Exception e) {
 			logger.error("Exception while saving aapplication", e);	
 		}
+		return "redirect:/indexFailure";
+	}
+	
+	@GetMapping("/indexFailure")
+	public String indexPage(Model model) {
+		model.addAttribute("failure" , "Payment Failed");
 		return "index";
 	}
+	
 	
 	@PostMapping("/validateMobile")
 	@ResponseBody
@@ -103,10 +106,36 @@ public class AppicationController extends AppConstants{
 		}
 	}
 	
-	@PostMapping(value = "/checkStatus",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public String checkStatus(@RequestParam String mobileNumber,@RequestParam String password ) {
-		//ApplicationDetailes app= appicationService.checkStatus(Long.valueOf(mobileNumber),password);
-		return "Status";
+	@PostMapping(value = "/checkStatus", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE })
+	@ResponseBody
+	public Map checkStatus(@RequestParam String mobileNumber, @RequestParam String password) {
+		HashMap<String, Object> returnData = new HashMap<>();
+		returnData.put("ERROR", "0");
+		try {
+			Status status = statusService.findByMobile(Long.valueOf(mobileNumber));
+			if (null != status) {
+				if(AppUtilities.isNotNullAndNotEmpty(password)) {
+					ApplicationDetailes appDetails = appicationService.findByApplicantNumber(status.getApplicantNumber());
+					String mobile = String.valueOf(appDetails.getMobile()); //9743875023
+					String last4digits =  mobile.substring(6, 10);
+					DateFormat dateFormat = new SimpleDateFormat("yyyy");  
+	                String strDate = dateFormat.format(appDetails.getDob());  
+	                String concatInputs = last4digits + strDate.replace("-", "");
+	                if(concatInputs.equals(password)) {
+	                	returnData.put("Status", status);
+	                	returnData.put("ERROR", "1");
+	                }else {
+	                	returnData.put("MESSAGE", "In correct credentials,Please try again");	
+	                }
+				}
+			}else {
+				returnData.put("MESSAGE", "Mobile number not exits");	
+			}
+		}catch(Exception e) {
+			logger.error("ERROR WHILE fetching mobile number", e.getMessage());
+		}
+		return returnData;
 	}
 	
 	@PostMapping(SEPERATOR+COMMON_SAVE)
@@ -159,11 +188,20 @@ public class AppicationController extends AppConstants{
 		}
 		if(null != status && paymentDetails.getRazorpaySignature().equals(status)) {
 			try {
+				logger.info("Exception of Payement save started");	
 				paymentDetails.setCreatedDate(new Date());
 				paymentDetails.setStatus("Success");
-				paymentDetailsRepository.save(paymentDetails);
-				model.addAttribute("paymentDetails" , paymentDetails);
-				model.addAttribute("successMessage" , "Application Submitted Successfully");
+				paymentDetailsService.savePaymentDetails(paymentDetails);
+				
+				logger.info("Exception of Payement save started");
+				Status appStatus = new Status();
+				appStatus.setApplicantNumber(paymentDetails.getApplicantNumber());
+				appStatus.setStatus("In Verification");
+				appStatus.setMobile(paymentDetails.getMobile());
+				appStatus.setAppliedDate(new Date());
+				appStatus.setComment("In verification");
+				statusService.saveStatus(appStatus);
+				
 			}catch(Exception e) {
 				logger.error("Exception while saving aapplication", e);	
 			}	
@@ -175,42 +213,6 @@ public class AppicationController extends AppConstants{
 		return "success";
 	}
 	
-	
-	@PostMapping("/testSave")
-	public String savetest(Model model, ApplicationDetailes applicationDetailes, HttpServletRequest request,
-			@RequestParam("sslcFile") MultipartFile sslcFile) {
-		
-		/*
-		 * Long mobileCount =
-		 * appicationService.countByMobile(applicationDetailes.getMobile());
-		 * if(mobileCount > 0) { model.addAttribute("validation" ,
-		 * "Mobile Number already registered"); return "form"; }
-		 * 
-		 * if(!sslcFile.isEmpty()) { String sslcFilePath = fileUploadAndReturn(sslcFile,
-		 * String.valueOf(applicationDetailes.getMobile()), "SSLC");
-		 * if(AppUtilities.isNotNullAndNotEmpty(sslcFilePath)) {
-		 * //applicationDetailes.setSslcFilePath(sslcFilePath);
-		 * System.out.print(sslcFilePath); } }
-		 */
-		
-		
-		Long applicantNumber = appicationService.max();
-		if(null == applicantNumber) {
-			applicantNumber = 100001l;
-			applicationDetailes.setApplicantNumber(applicantNumber);
-			System.out.print(applicantNumber);
-		}else {
-			applicationDetailes.setApplicantNumber(applicantNumber+1);
-			System.out.print(applicantNumber+1);
-		}
-		
-		System.out.print(applicationDetailes.getDob());
-		applicationDetailes = appicationService.saveApplicationDetailes(applicationDetailes);
-		model.addAttribute("applicantNumber" , applicationDetailes.getApplicantNumber());
-		model.addAttribute("applicantNumber" , "Application Submitted successfully !");
-		return "success";
-	}
-
 	
 	public static String calculateRFC2104HMAC(String data, String secret) throws java.security.SignatureException {
 		String result;

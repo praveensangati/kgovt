@@ -33,7 +33,7 @@ public class ApplicationDetailesService extends AppConstants{
 		return applicationDetailes;
 	}
 	
-	public ApplicationDetailes findByApplicantNumber(String applicantNumber) {
+	public ApplicationDetailes findByApplicantNumber(Long applicantNumber) {
 		return applicationDetailesRepository.findByApplicantNumber(applicantNumber);
 	}
 	
@@ -169,12 +169,13 @@ public class ApplicationDetailesService extends AppConstants{
 		try {
 			if (!file.isEmpty()) {
 				try {
+					
 					byte[] bytes = file.getBytes();
 					// Creating the directory to store file
 					String rootPath = System.getProperty("catalina.home");
 					//File dir = new File(rootPath + File.separator + "tmpFiles" + File.separator + mobile+ File.separator + fileFoler);
 					String folder2Store=rootPath + File.separator + fileFoler+ File.separator ;
-					String fileName=mobile+ "-" + file.getOriginalFilename();
+					String fileName=fileFoler+ "_" + mobile;
 					File dir = new File(folder2Store);
 					if (!dir.exists())
 						dir.mkdirs();
