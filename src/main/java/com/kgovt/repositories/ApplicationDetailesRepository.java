@@ -15,4 +15,6 @@ public interface ApplicationDetailesRepository extends JpaRepository<Application
 	Long max();
 	
 	long deleteByApplicantNumber(long ApplicantNumber);
+	
+	
 }

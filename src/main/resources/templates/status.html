@@ -1,21 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	crossorigin="anonymous" />
+<link th:rel="stylesheet" th:href="@{/css/style1.css}"
+	crossorigin="anonymous" />
+<link th:rel="stylesheet" th:href="@{/css/yearpicker.css}" crossorigin="anonymous" />
+<title>Karnataka Govt Application</title>
+<!-- <script th:src="@{/js/jquery-3.5.1.slim.min.js}" crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script>
 
-    <title>Karnataka State co-operative Federation Ltd.</title>
-    <link rel = "icon" href ="img/logo1.jpg" type = "image/x-icon"> 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <link  href="css/style1.css" rel="stylesheet">
+<script th:src="@{/js/yearpicker.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/status_validation.js}" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -28,28 +31,24 @@
         </div>
      </div>
 
-        <!--Nav bar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
- <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarNav">
- <ul class="navbar-nav">
-   <li class="nav-item">
-     <a class="nav-link" href="index.html">Home Page</a>
-   </li>
-   <li class="nav-item">
-     <a class="nav-link" href="form.html">Apply Online</a>
-   </li>
-   <li class="nav-item">
-     <a class="nav-link" href="#">Status</a>
-   </li>
-   <li class="nav-item">
-     <a class="nav-link" href="contact.html">Contact Us</a>
-   </li>
- </ul>
-</div>
-</nav>
+       <nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Home
+							Page</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#modalAbandonedCart" th:href="@{/new}">Apply
+							Online</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/status}">Status</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact
+							Us</a></li>
+				</ul>
+			</div>
+		</nav>
 
 <div class="row">
     <div class="col-md-2 custLeftDivMD">
@@ -73,20 +72,40 @@
          
           <div class="form-group">
             <label >Mobile Number/ಮೊಬೈಲ್ ನಂಬರ *</label>
-            <input type="text" id="mobile_number_verify" name="mobile_number_verify" class="form-control" placeholder="Mobile Number/ಮೊಬೈಲ್ ನಂಬರ" >
+            <input type="text" id="mobile_number_verify" name="mobile" class="form-control" placeholder="Mobile Number/ಮೊಬೈಲ್ ನಂಬರ" >
             <small class="form-text text-muted">Enter registered mobile number </small>
             <span id="e_mobile"></span>
         </div>
         <div class="form-group">
             <label >Password *</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Mobile Number/ಮೊಬೈಲ್ ನಂಬರ" >
+            <input type="password" id="password" name="password" class="form-control" placeholder="4 digit Mobile Number + DOB /ಮೊಬೈಲ್ ನಂಬರ" >
             <small class="form-text text-muted">Password will be combination of last 4 digit of mobile number followed by your year of brith. </small>
             <span id="e_mobile"></span>
         </div>
-        
-        <div class="col-md-4 card" style="width: 100rem; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; margin-top: 10px; ">
-            <div class="card-header">
-              Applicant details 
+        <button type="button" id="changetabbutton1" onclick="checkStatus()" class="btn btn-primary ">Check Status</button><br/><br/>
+         <div class="modal fade right" id="applicationStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+          <p class="heading" style="padding-left: 
+          10%;"><h2>Application Details</h2>
+          </p>
+  
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+        </div>
+  
+        <!--Body-->
+        <div class="modal-body">
+  
+          <div class="row">
+            <div class="col-3">
+              <p></p>
+              <p class="text-center"><i class="fas fa-shopping-cart fa-4x"></i></p>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
@@ -95,14 +114,33 @@
                 Status: <span th:text="${successMessage}"></span>  
               </li>
             </ul>
+            <div>
+              
+            </div>
           </div>
-        </fieldset>
         </div>
+  
+        <!--Footer-->
+        <div class="modal-footer justify-content-center">
+          <!-- <a type="button" class="btn btn-info" href="form.html">Proceed</a>   -->
+          <h3>Help Line</h3>
+          <ul>
+            <li>
+              <small>Phone no: +91 8892075276,+91 8660193339</small>  
+            </li>
+            <li>
+            <small>E-mail: apitotechnologies@gmail.com</small>
+            </li>
+          </ul>
+          <br>
+          <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal" href="#">Cancel</a>
+        </div>
+      </div>
     
     
     </div>
     
-    <div class="col-md-2 custRightDivMD">
+    <!-- <div class="col-md-2 custRightDivMD">
       <fieldset class="border" >
         <legend class ='text-left'>Help Line</legend>
         <ul>
@@ -120,28 +158,55 @@
     
     
     
-    </div>
-      <hr class="mt-2 mb-3"/>
-      
-      
-        
+    </div> -->
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+      <hr class="mt-2 mb-3"/>   
       <div class="bs-example">
         <div class="bg-warning d-flex justify-content-between">
             <div>Owned And Maintained By: Karnataka State co-operative Federation Ltd., </div>
             <div>Designed and Deveploed By: www.apito.in</div>
         </div>
     </div>
-       <!-- <div class="row"></div>
-          <div class="col-md-12 footerDiv">
-            <div class="col-md-4">
-            Designed and Deveploed By:<br><br>
-            <img src="img/apito1.png" class="Responsive image" />
-          
-            <br>  www.apito.in</p>
-              </div>
-      
-          </div>
-      </div> -->
-    </div>
+    <script type="text/javascript">
+    function checkStatus() {
+    	alert('check status');
+		let mobileNo = $('#mobile_number_verify').val();
+		let password = $('#password').val();
+		if (mobileNo && password) {
+			
+				$
+						.ajax({
+							type : 'POST',
+							url : "/checkStatus?mobileNumber="+mobileNo+"&password="+password,
+							contentType : "application/json; charset=utf-8",
+							data : {
+								mobile : mobileNo,
+								password : password
+							},
+							success : function(result) {
+								
+								if(result == 'Status'){
+									
+									
+								}
+								
+							}
+						});
+				document.getElementById('e_mobile').innerHTML = "";
+			} else {
+				
+			}
+		}
+	
+    </script>
     </body>
     </html>

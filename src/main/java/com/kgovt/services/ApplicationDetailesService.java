@@ -201,6 +201,11 @@ public class ApplicationDetailesService extends AppConstants{
 		}
 		return null;
 	}
+
+	/*
+	 * public ApplicationDetailes checkStatus(Long mobileno, String password) {
+	 * //return applicationDetailesRepository.findbyApplicantNumber(mobileno); }
+	 */
 	
 	
 }

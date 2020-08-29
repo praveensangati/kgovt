@@ -1,5 +1,94 @@
 $(function(){
 
+	$('#sslc_marks').change(function(){
+
+	    var obtained = document.getElementById('sslc_marks').value;
+	    var total = document.getElementById('sslc_totalmarks').value;
+
+
+	    if(total == ''){
+	      return;
+	    }
+
+	    else if(parseInt(obtained) < parseInt(total)){
+
+	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
+	    }else{
+	      alert('obtained marks cannot be more than total marks.Re-Enter your marks');
+	      
+	       document.getElementById('sslc_marks').value='';
+	   document.getElementById('sslc_totalmarks').value='';
+	   document.getElementById('sslc_marks').focus();
+	    }
+
+	  });
+
+	  $('#puc_marks').change(function(){
+
+	    var obtained = document.getElementById('sslc_marks').value;
+	    var total = document.getElementById('sslc_totalmarks').value;
+
+
+	    if(total == ''){
+	      return;
+	    }
+
+	    else if(parseInt(obtained) < parseInt(total)){
+
+	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
+	    }else{
+	      alert('obtained marks cannot be more than total marks.Re-Enter your marks');
+	      
+	       document.getElementById('sslc_marks').value='';
+	   document.getElementById('sslc_totalmarks').value='';
+	   document.getElementById('sslc_marks').focus();
+	    }
+
+	  });
+	  $('#ug_marks').change(function(){
+
+	    var obtained = document.getElementById('sslc_marks').value;
+	    var total = document.getElementById('sslc_totalmarks').value;
+
+
+	    if(total == ''){
+	      return;
+	    }
+
+	    else if(parseInt(obtained) < parseInt(total)){
+
+	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
+	    }else{
+	      alert('obtained marks cannot be more than total marks.Re-Enter your marks');
+	      
+	       document.getElementById('sslc_marks').value='';
+	   document.getElementById('sslc_totalmarks').value='';
+	   document.getElementById('sslc_marks').focus();
+	    }
+
+	  });
+	  $('#pg_marks').change(function(){
+
+	    var obtained = document.getElementById('sslc_marks').value;
+	    var total = document.getElementById('sslc_totalmarks').value;
+
+
+	    if(total == ''){
+	      return;
+	    }
+
+	    else if(parseInt(obtained) < parseInt(total)){
+
+	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
+	    }else{
+	      alert('obtained marks cannot be more than total marks.Re-Enter your marks');
+	      
+	       document.getElementById('sslc_marks').value='';
+	   document.getElementById('sslc_totalmarks').value='';
+	   document.getElementById('sslc_marks').focus();
+	    }
+
+	  });
 	$('#sslc_totalmarks').change(function(){
 
 	    var obtained = document.getElementById('sslc_marks').value;
@@ -666,7 +755,7 @@ function ValidateSize(file) {
 
     }
       var filePath = file.value; 
-      var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; 
+      var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i; 
         
       if (!allowedExtensions.exec(filePath)) { 
           alert('Invalid file type'); 
@@ -674,7 +763,6 @@ function ValidateSize(file) {
           return false; 
       }   
 }
-
 function ageCal(){
 	  var dob = parseInt(document.getElementById('dob').value.substring(0,4));
 	  var today = new Date();

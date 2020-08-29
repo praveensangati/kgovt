@@ -51,6 +51,16 @@ $('#sslc_marks').inputmask('Regex', {
 
 });
 
+$('#sslc_pass').inputmask('Regex', { 
+	 regex: "^[1-2][9|0][0|7|8|9|1|2][0-9]$"
+
+});
+
+$('#sslc_totalmarks').inputmask('Regex', { 
+    regex: "^[1-9][0-9][0-9][0-9]$"
+
+});
+
 $('#sslc_percentage').inputmask('Regex', { 
     regex: "^100$|^[0-9]{0,2}([.][0-9]{1,2})$"
 
@@ -60,11 +70,18 @@ $('#puc_institution').inputmask('Regex', {
     regex: "^[a-zA-z][a-zA-Z ]{40}$"
 
 });
+$('#puc_totalmarks').inputmask('Regex', { 
+    regex: "^[1-9][0-9][0-9][0-9]$"
 
+});
 
 
 $('#puc_marks').inputmask('Regex', { 
     regex: "^[1-9][0-9][0-9]$"
+
+});
+$('#puc_pass').inputmask('Regex', { 
+	 regex: "^[1-2][9|0][0|7|8|9|1|2][0-9]$"
 
 });
 
@@ -83,7 +100,14 @@ $('#ug_marks').inputmask('Regex', {
     regex: "^[1-9][0-9][0-9]$"
 
 });
+$('#ug_pass').inputmask('Regex', { 
+	 regex: "^[1-2][9|0][0|7|8|9|1|2][0-9]$"
 
+});
+$('#ug_totalmarks').inputmask('Regex', { 
+    regex: "^[1-9][0-9][0-9][0-9]$"
+
+});
 $('#ug_percentage').inputmask('Regex', { 
     regex: "^100$|^[0-9]{0,2}([.][0-9]{1,2})$"
 
@@ -116,7 +140,14 @@ $('#pg_marks').inputmask('Regex', {
     regex: "^[1-9][0-9][0-9]$"
 
 });
+$('#pg_pass').inputmask('Regex', { 
+	 regex: "^[1-2][9|0][0|7|8|9|1|2][0-9]$"
 
+});
+$('#pg_totalmarks').inputmask('Regex', { 
+    regex: "^[1-9][0-9][0-9][0-9]$"
+
+});
 $('#pg_percentage').inputmask('Regex', { 
     regex: "^100$|^[0-9]{0,2}([.][0-9]{1,2})$"
 

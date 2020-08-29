@@ -4,16 +4,20 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-	crossorigin="anonymous" />
+<!-- <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	crossorigin="anonymous" /> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 <link th:rel="stylesheet" th:href="@{/css/style1.css}" crossorigin="anonymous" />
 <link th:rel="stylesheet" th:href="@{/css/yearpicker.css}" crossorigin="anonymous" />
+
 
 <title>Karnataka Govt Application</title>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <!-- <script th:src="@{/js/jquery-3.5.1.slim.min.js}" crossorigin="anonymous"></script> -->
-<script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script>
-<script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script>
+<!-- <script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
+<!-- <script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 <script th:src="@{/js/validation.js}" crossorigin="anonymous"></script>
 <script th:src="@{/js/inputmask.js}" crossorigin="anonymous"></script>
 <script th:src="@{/js/yearpicker.js}" crossorigin="anonymous"></script>
@@ -264,7 +268,7 @@
 									</div>
 									<div class="form-group">
 										<label>Passing Year *</label> 
-										<input type="text" name="sslcPassingYearMonth" id="sslc_pass" class="form-control yearpicker" placeholder="Passing Year">
+										<input type="text" name="sslcPassingYearMonth" id="sslc_pass" class="form-control" placeholder="Passing Year">
 										<span id="e_sslc_pass"></span>
 									</div>
 									<div class="form-group">
@@ -298,7 +302,7 @@
 									</div>
 									<div class="form-group">
 										<label>Passing Year</label> <input type="text"
-											name="pucPassingYearMonth" id="puc_pass" class="form-control yearpicker"
+											name="pucPassingYearMonth" id="puc_pass" class="form-control"
 											placeholder="Passing Year">
 									</div>
 									<div class="form-group">
@@ -362,7 +366,7 @@
 									</div>
 									<div class="form-group">
 										<label>Passing Year</label> 
-										<input type="text" name="pgPassingYearMonth" id="ug_year" class="form-control yearpicker" placeholder="Passing Year">
+										<input type="text" name="pgPassingYearMonth" id="ug_year" class="form-control" placeholder="Passing Year">
 									</div>
 									<div class="form-group">
 										<label>Total Marks</label> 
@@ -411,11 +415,12 @@
 											id="e_doa"></span>
 									</div>
 									<div class="form-group">
-										<label>Period Of Service/ಸೇವೆಯ ಅವಧಿ*</label> <input
+										<label>Period Of Service/ಸೇವೆಯ ಅವಧಿ*</label> 
+										<input
 											type="text" id="period_of_service" name="societyPreOfService"
 											class="form-control"
-											placeholder="Period Of Service/ಸೇವೆಯ ಅವಧಿ"> <span
-											id="e_period_of_service" readonly></span>
+											placeholder="Period Of Service/ಸೇವೆಯ ಅವಧಿ" readonly> 
+											<span id="e_period_of_service" ></span>
 									</div>
 									<div class="form-group">
 										<label>Office Address/ವಿಳಾಸ*</label>
@@ -520,7 +525,7 @@
 	</div>
 
 	</div>
-	<script th:src="@{/js/input_validation.js}" crossorigin="anonymous"></script>
+	<script th:src="@{/js/input_validation.js}"></script>
 	<script type="text/javascript">
 		
 		function validateMobile() {
@@ -550,11 +555,14 @@
 									}
 								}
 							});
+					document.getElementById('e_mobile').innerHTML = "";
 				} else {
+					
 					$('#mobile_number').focus();
 					$('#mobile_number').val('');
 					document.getElementById('e_mobile').innerHTML = "**Enter a valid Mobile Number";
 					document.getElementById('e_mobile').style.color = 'red';
+					
 				}
 			}
 		}

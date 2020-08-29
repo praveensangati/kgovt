@@ -11,10 +11,12 @@ import javax.xml.bind.DatatypeConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -99,6 +101,12 @@ public class AppicationController extends AppConstants{
 		}else {
 			return "0";
 		}
+	}
+	
+	@PostMapping(value = "/checkStatus",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public String checkStatus(@RequestParam String mobileNumber,@RequestParam String password ) {
+		//ApplicationDetailes app= appicationService.checkStatus(Long.valueOf(mobileNumber),password);
+		return "Status";
 	}
 	
 	@PostMapping(SEPERATOR+COMMON_SAVE)

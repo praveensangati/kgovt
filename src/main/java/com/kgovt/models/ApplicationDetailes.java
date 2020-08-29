@@ -73,6 +73,8 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	
 	private Long mobile;
 	
+	private String password;
+	
 	@Column(name = "father_name")
 	private String fatherName;
 	
