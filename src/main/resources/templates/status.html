@@ -24,19 +24,16 @@
 
 <body>
 <span id="modalHTml"></span>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12 d-none d-sm-none d-md-block headerDiv">
-				<img src="img/logo1.jpg">
-				<p class="font-weight-normal"
-					style="font-size: 8ch; text-align: center;">Karnataka State
-					co-operative Federation Ltd.,</p>
-				<p
-					style="text-align: center; font-size: medium; color: rgb(121, 171, 236);">
-					Diploma in Co-operative Management (Distance Education)</p>
-			</div>
-		</div>
+	 <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 d-none d-sm-none d-md-block headerDiv">
+            <img src="img/logo1.jpg">
+             <p class="font-weight-normal" style="font-size:8ch; text-align:center;"> Karnataka State co-operative Federation Ltd.,</p>
+            <p style="text-align:center; font-size: medium; color: rgb(121, 171, 236);"> Diploma in Co-operative Management (Distance Education)</p>
+           </div>
+        </div>
 
+		<!--Nav bar-->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNav" aria-controls="navbarNav"
@@ -47,8 +44,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" th:href="@{/}">Home
 							Page</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="modal"
-						data-target="#modalAbandonedCart" th:href="@{/new}">Apply
+					<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#modalAbandonedCart" th:href="@{/new}">Apply
 							Online</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/status}">Status</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact
@@ -62,15 +58,16 @@
 				<fieldset class="border">
 					<legend class='text-left'>Downloads</legend>
 					<ul>
-						<li><a href="resource/Noc or Deputing Letter.pdf" download>Download
+						<li><a href="./resource/Noc or Deputing Letter.pdf" rel="nofollow">
 								NOC template</a></li>
-						<li><a href="resource/Service Certificate.pdf" download>Download
+						<li><a href="./resource/Service Certificate.pdf" rel="nofollow">
 								Service Certificate template</a></li>
-						<li><a href="offline.html"> Download Application Form</a></li>
+						<li><a th:href="@{/offline}">Offline Application Form</a></li>
 					</ul>
 				</fieldset>
 
 			</div>
+
 
 			<div class="col-md-8 custCentDivMD overflow-auto">
 				<div id="genraInfo">
@@ -80,33 +77,63 @@
 						<div class="form-group">
 							<label>Mobile Number/ಮೊಬೈಲ್ ನಂಬರ *</label> <input type="text"
 								id="mobile_number_verify" name="mobile" class="form-control"
-								placeholder="Mobile Number/ಮೊಬೈಲ್ ನಂಬರ"> <small
-								class="form-text text-muted">Enter registered mobile
-								number </small> <span id="e_mobile"></span>
+								placeholder="Mobile Number/ಮೊಬೈಲ್ ನಂಬರ"> 
+								<span id="e_mobile_verify"></span>
 						</div>
 						<div class="form-group">
 							<label>Password *</label> <input type="password" id="password"
 								name="password" class="form-control"
-								placeholder="4 digit Mobile Number + DOB /ಮೊಬೈಲ್ ನಂಬರ">
+								placeholder="4 Digit Mobile Number + Year of Birth /ಮೊಬೈಲ್ ನಂಬರ">
 							<small class="form-text text-muted">Password will be
 								combination of last 4 digit of mobile number followed by your
-								year of brith. </small> <span id="e_mobile"></span>
+								year of brith. </small> <span id="e_password"></span>
 						</div>
 						<button type="button" id="changetabbutton1"
 							onclick="checkStatus()" class="btn btn-primary ">Check
 							Status</button>
 						<br /> <br />
+						</fieldset>
+						</div>
+						</div>
 
-							<br> <br> <br> <br> <br> <br> <br>
-							<br> <br>
-							<hr class="mt-2 mb-3" />
-							<div class="bs-example">
-								<div class="bg-warning d-flex justify-content-between">
-									<div>Owned And Maintained By: Karnataka State
-										co-operative Federation Ltd.,</div>
-									<div>Designed and Deveploed By: www.apito.in</div>
-								</div>
-							</div>
+							<div class="col-md-2 custRightDivMD">
+      <fieldset class="border" >
+        <legend class ='text-left'>Help Line</legend>
+        <ul>
+          <li>
+            Phone no: +91 8892075276
+             ,+91 8660193339  
+          </li>
+          <li>
+            E-mail: apitotechnologies@gmail.com
+          </li>
+         
+        </ul>
+      </fieldset>
+    </div> 
+    </div>
+							<hr class="mt-2 mb-3"/>
+  
+  
+    
+  <div class="bs-example">
+    <div class="bg-warning d-flex justify-content-between">
+        <div>&nbsp&nbspOwned And Maintained By: Karnataka State co-operative Federation Ltd., </div>
+        <div>Designed and Deveploed By: www.apito.in&nbsp&nbsp</div>
+    </div>
+</div>
+   <!-- <div class="row"></div>
+      <div class="col-md-12 footerDiv">
+        <div class="col-md-4">
+        Designed and Deveploed By:<br><br>
+        <img src="img/apito1.png" class="Responsive image" />
+      
+        <br>  www.apito.in</p>
+          </div>
+  
+      </div>
+  </div> -->
+</div>
 							<script type="text/javascript">
     function checkStatus() {
 		let mobileNo = $('#mobile_number_verify').val();
@@ -122,17 +149,19 @@
 							},
 							success : function(result) {
 								$('#modalHTml').html(statusHTML);
-								if(result.ERROR) {
+								if(result.ERROR == '1') {
 									let s = result.Status;
 									$('#applicantNumber').html(s.applicantNumber);
 									$('#statusMessage').html(s.status);
 								}else {
-									$('#htmlContent').html('<span>error</span>');
+									$('#appNo').remove();
+									$('#statusMessage').html('Mobile/Password is incorrect');
 								}
 								$('#applicationStatus').modal('show');
 							}
 						});
 				document.getElementById('e_mobile').innerHTML = "";
+				document.getElementById('e_password').innerHTML = "";
 			} else {
 				
 			}
@@ -170,8 +199,8 @@
 							</p>
 						</div>
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Application Id: <span
-								id="applicantNumber"></span> <br> <br>
+							<li class="list-group-item"><span id="appNo">Application Id: <span
+								id="applicantNumber"></span> </span><br> <br>
 								Status: <span id="statusMessage"></span>
 							</li>
 						</ul>
