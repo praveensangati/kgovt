@@ -4,8 +4,6 @@ $('#mobile_number').inputmask('Regex', {
 	regex: "^[1-9][0-9]{9}|[+][9][1][1-9][0-9]{9}$"
 });
 
-
-
 $('#name').inputmask('Regex', { 
 	regex: "^[a-zA-Z][a-zA-Z ]{30}[]$"
 });
@@ -170,26 +168,12 @@ $('#phone_number_office').inputmask('Regex', {
 
 });
 
-
-
 $('#pincode_office').inputmask('Regex', { 
     regex: "^[1-9][0-9]{5}$"
 
 });
 
-$('.yearpicker').yearpicker({
-
-    year: null,
-
-    // Start Year
-    startYear: 1970,
-
-    // End Year
-    endYear: 2020,
+$('#mobile_number_verify').inputmask('Regex', { 
+	regex: "^[1-9][0-9]{9}|[+][9][1][1-9][0-9]{9}$"
 });
-$('.yearpicker').yearpicker({
 
-    onShow:null,
-    onHide:null,
-    onChange:null
-    });

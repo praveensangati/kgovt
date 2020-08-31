@@ -1,7 +1,8 @@
 package com.kgovt.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import javax.servlet.ServletContext;
+
+import org.springframework.http.MediaType;
 
 import com.kgovt.models.ApplicationDetailes;
 
@@ -27,4 +28,17 @@ public class AppUtilities {
 		String receiptNo = prefix + seperator + sufix;
 		return receiptNo;
 	}
+	
+	 public static MediaType getMediaTypeForFileName(ServletContext servletContext, String fileName) {
+	        // application/pdf
+	        // application/xml
+	        // image/gif, ...
+	        String mineType = servletContext.getMimeType(fileName);
+	        try {
+	            MediaType mediaType = MediaType.parseMediaType(mineType);
+	            return mediaType;
+	        } catch (Exception e) {
+	            return MediaType.APPLICATION_OCTET_STREAM;
+	        }
+	    }
 }

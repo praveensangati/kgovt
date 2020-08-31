@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	crossorigin="anonymous" />
+<link th:rel="stylesheet" th:href="@{/css/datatables.css}"/>
+<link th:rel="stylesheet" th:href="@{/css/style1.css}"
+	crossorigin="anonymous" />
+<title>Karnataka Govt Application</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 d-none d-sm-none d-md-block headerDiv">
+				<img src="img/logo1.jpg">
+				<p class="font-weight-normal"
+					style="font-size: 8ch; text-align: center;">Karnataka State
+					co-operative Federation Ltd.,</p>
+				<p
+					style="text-align: center; font-size: medium; color: rgb(121, 171, 236);">
+					Diploma in Co-operative Management (Distance Education)</p>
+			</div>
+		</div>
+
+		<!--Nav bar-->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Home
+							Page</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="modal"
+						data-target="#modalAbandonedCart" th:href="@{/new}">Apply
+							Online</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/status}">Status</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact
+							Us</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			
+					<table id="example" class="table table-bordered table-responsive"
+						style="width: 100%">
+						<thead>
+							<tr>
+								<th>Application Number</th>
+								<th>Mobile</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Applied Date</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>Application Number</th>
+								<th>Mobile</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Applied Date</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+	</div>
+
+	<div class="bs-example">
+		<div class="bg-warning d-flex justify-content-between">
+			<div>&nbsp&nbspOwned And Maintained By: Karnataka State
+				co-operative Federation Ltd.,</div>
+			<div>Designed and Deveploed By: www.apito.in&nbsp&nbsp</div>
+		</div>
+	</div>
+	</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/datatables.js}"></script>
+
+<script>
+    $('#example').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/allApplicationData",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        },
+        "columns": [
+            {"data": "applicantNumber", "width": "20%",
+            	"render": function ( data, type, row, meta ) {
+            	      return '<span onclick=viewApp('+data+') style="text-decoration: underline;cursor:pointer">'+data+'</span>';
+            	    }},
+            {"data": "mobile","width": "20%"},
+            {"data": "name", "width": "20%"},
+            {"data": "email", "width": "20%"},
+            {"data": "creationDate", "width": "20%"}
+        ]
+    });
+    
+    function viewApp(data){
+    	 window.location.href = "/viewAppData?applicantNumber="+data;
+    }
+    
+</script>
+</body>
+</html>

@@ -1,5 +1,8 @@
 package com.kgovt.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.SignatureException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -9,17 +12,24 @@ import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.DatatypeConverter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,78 +44,104 @@ import com.kgovt.utils.AppConstants;
 import com.kgovt.utils.AppUtilities;
 
 @Controller
-public class AppicationController extends AppConstants{
-	
-	private static final Logger logger = LoggerFactory
-			.getLogger(AppicationController.class);
-	
+public class AppicationController extends AppConstants {
+
+	private static final Logger logger = LoggerFactory.getLogger(AppicationController.class);
+
 	@Autowired
 	private ApplicationDetailesService appicationService;
-	
+
 	@Autowired
 	private PaymentDetailsService paymentDetailsService;
-	
+
 	@Autowired
 	private StatusService statusService;
 	
+	@Autowired
+    private ServletContext servletContext;
+
 	private static final String HMAC_SHA256_ALGORITHM = "HmacSHA256";
-	
+
 	@GetMapping(SEPERATOR)
 	public String getApplicationHome(Model model) {
 		return "index";
 	}
-	
+
 	@GetMapping("/contact")
 	public String contactPage() {
 		return "contact";
 	}
-	
+
+	@GetMapping("/adminLogin")
+	public String adminView() {
+		return "application_list";
+	}
+
+	@GetMapping("/list")
+	public String applicationlistPage() {
+		return "application_list";
+	}
+
+	@GetMapping("/admin")
+	public String admin() {
+		return "adminlogin";
+	}
+
+	@GetMapping("/viewAppData")
+	public String viewAppData(Model model, @RequestParam String applicantNumber) {
+		try {
+			ApplicationDetailes appDetails = appicationService.findByApplicantNumber(Long.valueOf(applicantNumber));
+			model.addAttribute("applicationDetailes", appDetails);
+		} catch (Exception e) {
+		}
+		return "applicationview";
+	}
+
 	@GetMapping("/offline")
 	public String offlinePage() {
 		return "offline";
 	}
-	
+
 	@GetMapping("/status")
-	public String status(){
+	public String status() {
 		return "status";
 	}
-	
-	@GetMapping(SEPERATOR+COMMON_NEW)
+
+	@GetMapping(SEPERATOR + COMMON_NEW)
 	public String applicationNew(Model model) {
 		ApplicationDetailes appDetails = new ApplicationDetailes();
-		model.addAttribute("applicationDetailes" , appDetails);
+		model.addAttribute("applicationDetailes", appDetails);
 		return "form";
 	}
-	
+
 	@GetMapping("/redirectIndex")
-	public String redirectIndex(Model model, PaymentDetails paymentDetails){
+	public String redirectIndex(Model model, PaymentDetails paymentDetails) {
 		try {
-			model.addAttribute("failure" , "Payment Failed");
+			model.addAttribute("failure", "Payment Failed");
 			appicationService.removeApplicationDetailes(paymentDetails.getApplicantNumber());
-		}catch(Exception e) {
-			logger.error("Exception while saving aapplication", e);	
+		} catch (Exception e) {
+			logger.error("Exception while saving aapplication", e);
 		}
 		return "redirect:/indexFailure";
 	}
-	
+
 	@GetMapping("/indexFailure")
 	public String indexPage(Model model) {
-		model.addAttribute("failure" , "Payment Failed");
+		model.addAttribute("failure", "Payment Failed");
 		return "index";
 	}
-	
-	
+
 	@PostMapping("/validateMobile")
 	@ResponseBody
 	public String checkMobileExiastes(@RequestParam String mobileNumber) {
 		Long mobileCount = appicationService.countByMobile(Long.valueOf(mobileNumber));
-		if(mobileCount > 0) {
+		if (mobileCount > 0) {
 			return "1";
-		}else {
+		} else {
 			return "0";
 		}
 	}
-	
+
 	@PostMapping(value = "/checkStatus", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
@@ -115,43 +151,46 @@ public class AppicationController extends AppConstants{
 		try {
 			Status status = statusService.findByMobile(Long.valueOf(mobileNumber));
 			if (null != status) {
-				if(AppUtilities.isNotNullAndNotEmpty(password)) {
-					ApplicationDetailes appDetails = appicationService.findByApplicantNumber(status.getApplicantNumber());
-					String mobile = String.valueOf(appDetails.getMobile()); //9743875023
-					String last4digits =  mobile.substring(6, 10);
-					DateFormat dateFormat = new SimpleDateFormat("yyyy");  
-	                String strDate = dateFormat.format(appDetails.getDob());  
-	                String concatInputs = last4digits + strDate.replace("-", "");
-	                if(concatInputs.equals(password)) {
-	                	returnData.put("Status", status);
-	                	returnData.put("ERROR", "1");
-	                }else {
-	                	returnData.put("MESSAGE", "In correct credentials,Please try again");	
-	                }
+				if (AppUtilities.isNotNullAndNotEmpty(password)) {
+					ApplicationDetailes appDetails = appicationService
+							.findByApplicantNumber(status.getApplicantNumber());
+					String mobile = String.valueOf(appDetails.getMobile()); // 9743875023
+					String last4digits = mobile.substring(6, 10);
+					DateFormat dateFormat = new SimpleDateFormat("yyyy");
+					String strDate = dateFormat.format(appDetails.getDob());
+					String concatInputs = last4digits + strDate.replace("-", "");
+					if (concatInputs.equals(password)) {
+						returnData.put("Status", status);
+						returnData.put("ERROR", "1");
+					} else {
+						returnData.put("MESSAGE", "In correct credentials,Please try again");
+					}
 				}
-			}else {
-				returnData.put("MESSAGE", "Mobile number not exits");	
+			} else {
+				returnData.put("MESSAGE", "Mobile number not exits");
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			logger.error("ERROR WHILE fetching mobile number", e.getMessage());
 		}
 		return returnData;
 	}
-	
-	@PostMapping(SEPERATOR+COMMON_SAVE)
+
+	@PostMapping(SEPERATOR + COMMON_SAVE)
 	public String saveApplication(Model model, ApplicationDetailes applicationDetailes, HttpServletRequest request,
-			@RequestParam("sslcFile") MultipartFile sslcFile, @RequestParam("pucFile") MultipartFile pucFile, @RequestParam("ugFile") MultipartFile ugFile
-			, @RequestParam("pgFile") MultipartFile pgFile, @RequestParam("photoFile") MultipartFile photoFile
-			, @RequestParam("addressFile") MultipartFile addressFile, @RequestParam("certificateFile") MultipartFile certificateFile
-			, @RequestParam("nocFile") MultipartFile nocFile, @RequestParam("signatureFile") MultipartFile signatureFile) {
+			@RequestParam("sslcFile") MultipartFile sslcFile, @RequestParam("pucFile") MultipartFile pucFile,
+			@RequestParam("ugFile") MultipartFile ugFile, @RequestParam("pgFile") MultipartFile pgFile,
+			@RequestParam("photoFile") MultipartFile photoFile, @RequestParam("addressFile") MultipartFile addressFile,
+			@RequestParam("certificateFile") MultipartFile certificateFile,
+			@RequestParam("nocFile") MultipartFile nocFile,
+			@RequestParam("signatureFile") MultipartFile signatureFile) {
 		try {
-			applicationDetailes = appicationService.saveApplicationAction(applicationDetailes,sslcFile,
-					 pucFile, ugFile, pgFile, photoFile,addressFile,
-					certificateFile,nocFile,signatureFile);
-			if(null == applicationDetailes) {
-				model.addAttribute("errorMessage" , "Ooops Unexpected Error occured while saving Application, Please contact System Administrator !");
+			applicationDetailes = appicationService.saveApplicationAction(applicationDetailes, sslcFile, pucFile,
+					ugFile, pgFile, photoFile, addressFile, certificateFile, nocFile, signatureFile);
+			if (null == applicationDetailes) {
+				model.addAttribute("errorMessage",
+						"Ooops Unexpected Error occured while saving Application, Please contact System Administrator !");
 				return "error";
-			}else {
+			} else {
 				PaymentDetails paymentDetails = new PaymentDetails();
 				paymentDetails.setAmount(PAYMENT1);
 				paymentDetails.setMobile(applicationDetailes.getMobile());
@@ -161,38 +200,39 @@ public class AppicationController extends AppConstants{
 				paymentDetails.setDescription("A Payment for Application Submission");
 				paymentDetails.setApplicantNumber(applicationDetailes.getApplicantNumber());
 				paymentDetails = appicationService.proceedForPayment(paymentDetails);
-				if(null == paymentDetails) {
-					model.addAttribute("errorMessage" , "Ooops Unexpected Error occured while submitting Payment, Please contact System Administrator !");
-					return "error";	
-				}else {
-					model.addAttribute("paymentDetails" , paymentDetails);
+				if (null == paymentDetails) {
+					model.addAttribute("errorMessage",
+							"Ooops Unexpected Error occured while submitting Payment, Please contact System Administrator !");
+					return "error";
+				} else {
+					model.addAttribute("paymentDetails", paymentDetails);
 					return "payment";
 				}
 			}
-		}catch(Exception e) {
-			logger.error("Exception while saving aapplication", e);	
+		} catch (Exception e) {
+			logger.error("Exception while saving aapplication", e);
 		}
 		return "success";
 	}
-	
-	@PostMapping(SEPERATOR+COMMON_FINAL)
-	public String finalFlow(Model model,PaymentDetails paymentDetails) {
+
+	@PostMapping(SEPERATOR + COMMON_FINAL)
+	public String finalFlow(Model model, PaymentDetails paymentDetails) {
 		String status = null;
 		try {
-			String data = paymentDetails.getRazorpayOrderId() +"|"+paymentDetails.getRazorpayPaymentId();
+			String data = paymentDetails.getRazorpayOrderId() + "|" + paymentDetails.getRazorpayPaymentId();
 			status = calculateRFC2104HMAC(data, SECRET);
 		} catch (SignatureException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			status = null;
 		}
-		if(null != status && paymentDetails.getRazorpaySignature().equals(status)) {
+		if (null != status && paymentDetails.getRazorpaySignature().equals(status)) {
 			try {
-				logger.info("Exception of Payement save started");	
+				logger.info("Exception of Payement save started");
 				paymentDetails.setCreatedDate(new Date());
 				paymentDetails.setStatus("Success");
 				paymentDetailsService.savePaymentDetails(paymentDetails);
-				
+
 				logger.info("Exception of Payement save started");
 				Status appStatus = new Status();
 				appStatus.setApplicantNumber(paymentDetails.getApplicantNumber());
@@ -201,19 +241,18 @@ public class AppicationController extends AppConstants{
 				appStatus.setAppliedDate(new Date());
 				appStatus.setComment("In verification");
 				statusService.saveStatus(appStatus);
-				
-			}catch(Exception e) {
-				logger.error("Exception while saving aapplication", e);	
-			}	
-		}else {
-			model.addAttribute("paymentDetails" , paymentDetails);
-			model.addAttribute("successMessage" , "Wrong Details");
+
+			} catch (Exception e) {
+				logger.error("Exception while saving aapplication", e);
+			}
+		} else {
+			model.addAttribute("paymentDetails", paymentDetails);
+			model.addAttribute("successMessage", "Wrong Details");
 		}
-		
+
 		return "success";
 	}
-	
-	
+
 	public static String calculateRFC2104HMAC(String data, String secret) throws java.security.SignatureException {
 		String result;
 		try {
@@ -236,5 +275,32 @@ public class AppicationController extends AppConstants{
 		}
 		return result;
 	}
-	
+
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	@ResponseBody
+	public  ResponseEntity<InputStreamResource>  downloadFile(@Param(value = "photoFile") String photoFile)throws IOException {
+		if (AppUtilities.isNotNullAndNotEmpty(photoFile)) {
+			String[] fileNames = photoFile.split("_");
+			String path = fileNames[0];
+			String rootPath = System.getProperty("user.home");
+			String folderStored = rootPath + File.separator +"Uploads"+ File.separator+ path + File.separator + photoFile;
+			 File downloadFile= new File(folderStored); 
+			 //return new FileSystemResource(new File(folderStored));
+			 
+			 InputStreamResource resource = new InputStreamResource(new FileInputStream(downloadFile));
+			 MediaType mediaType = AppUtilities.getMediaTypeForFileName(this.servletContext, downloadFile.getName());
+		        return ResponseEntity.ok()
+		                // Content-Disposition
+		                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + downloadFile.getName())
+		                // Content-Type
+		                .contentType(mediaType)
+		                // Contet-Length
+		                .contentLength(downloadFile.length()) //
+		                .body(resource);
+		} else {
+			return null;
+		}
+
+	}
+
 }

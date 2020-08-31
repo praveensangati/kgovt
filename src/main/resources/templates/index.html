@@ -5,187 +5,104 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
 	crossorigin="anonymous" />
 <link th:rel="stylesheet" th:href="@{/css/style1.css}"
 	crossorigin="anonymous" />
-<link th:rel="stylesheet" th:href="@{/css/yearpicker.css}" crossorigin="anonymous" />
-<title>Karnataka Govt Application</title>
-<script th:src="@{/js/jquery-3.5.1.slim.min.js}" crossorigin="anonymous"></script>
-<script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script>
-<script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script>
-<script th:src="@{/js/validation.js}" crossorigin="anonymous"></script>
-<script th:src="@{/js/yearpicker.js}" crossorigin="anonymous"></script>
+<link th:rel="stylesheet" th:href="@{/css/yearpicker.css}"
+	crossorigin="anonymous" />
+<title>Karnataka State co-operative Federation Ltd.</title>
+<link rel="icon" th:href="@{img/logo1.jpg}" type="image/x-icon">
 </head>
-
 <body>
-<span id="modalHTml"></span>
-<div class="modal fade right" id="modalAbandonedCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true" data-backdrop="false">
-  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <p class="heading" style="padding-left: 
-        10%;"><h2>WARNING!!!</h2>
-        </p>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="white-text">&times;</span>
-        </button>
-      </div>
-
-      <!--Body-->
-      <div class="modal-body">
-
-        <div class="row">
-          <div class="col-3">
-            <p></p>
-            <p class="text-center"><i class="fas fa-shopping-cart fa-4x"></i></p>
-          </div>
-
-          <div>
-            <p style="padding-left: 10%;">Photo upload ahead please keep the photos scanned in required format and please keep the restricted file to 1mb</p>
-          </div>
-        </div>
-      </div>
-
-      <!--Footer-->
-      <div class="modal-footer justify-content-center">
-        <a type="button" class="btn btn-info" th:href="@{/new}">Proceed</a>  
-        <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal" href="#">Cancel</a>
-      </div>
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
-  
-       <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12 d-none d-sm-none d-md-block headerDiv">
-            <img src="img/logo1.jpg">
-             <p class="font-weight-normal" style="font-size:8ch; text-align:center;"> Karnataka State co-operative Federation Ltd.,</p>
-            <p style="text-align:center; font-size: medium; color: rgb(121, 171, 236);"> Diploma in Co-operative Management (Distance Education)</p>
-           </div>
-        </div>
-
-		<!--Nav bar-->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNav" aria-controls="navbarNav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" th:href="@{/}">Home
-							Page</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#modalAbandonedCart" th:href="@{/new}">Apply
-							Online</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/status}">Status</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact
-							Us</a></li>
-				</ul>
-			</div>
-		</nav>
-
+	<div class="container-fluid">
+		<!--header and Nav bar here-->
+		<div id="headerId"></div>
 		<div class="row">
+			<!--Left panel-->
 			<div class="col-md-2 custLeftDivMD">
 				<fieldset class="border">
 					<legend class='text-left'>Downloads</legend>
-					<ul>
-						<li><a href="./resource/Noc or Deputing Letter.pdf" rel="nofollow">
-								NOC template</a></li>
-						<li><a href="./resource/Service Certificate.pdf" rel="nofollow">
-								Service Certificate template</a></li>
-						<li><a th:href="@{/offline}">Offline Application Form</a></li>
-					</ul>
+					<div id="leftId"></div>
 				</fieldset>
-
 			</div>
-
 			<div class="col-md-8 custCentDivMD overflow-auto">
-    <div id="genraInfo">
-    <fieldset class="border" >
-      <legend2 class ='text-left'></legend>
-      <p id="innerPara">
-        <div class="text-center"><h2>ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಮಹಾಮಂಡಳ ನಡೆದು ಬಂದ ದಾರಿ</h2></div>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 ದಶಕಗಳಷ್ಟು ಹಿಂದೆ ಸಮಾನ ಮನಸ್ಕರ ಕೂಟವೊಂದು ಸಹಕಾರ ತತ್ವ ಪ್ರಚಾರಕ್ಕಾಗಿ ಹಾಗೂ ಸಹಕಾರ ಕ್ಷೇತ್ರದ ಬೆಳವಣಿಗೆಗೆ ಅಗತ್ಯವಾದ ಶಿಕ್ಷಣ ನೀಡುವ ಉದ್ದೇಶದಿಂದ ಸಹಕಾರ ಸಂಸ್ಥೆಯೊಂದನ್ನು ಸ್ಥಾಪಿಸಿದರು. ಸಹಕಾರ ಕ್ಷೇತ್ರದ ಚಟುವಟಿಕೆಗಳಿಗೆ ಪ್ರಚಾರ ನೀಡುವುದು ಇದರ ಧ್ಯೇಯೋದ್ದೇಶವಾಗಿತ್ತು. ಸಮಾನ ಮನಸ್ಕರ ಈ ಪ್ರಯತ್ನದಿಂದ 1924 ಆಗಸ್ಟ್ 27 ರಂದು ಮೈಸೂರು ಪ್ರಾಂತೀಯ ಸಹಕಾರಿ ಸಂಸ್ಥೆಯೊಂದು ಅಸ್ತಿತ್ವಕ್ಕೆ ಬಂದಿತು. ಇದರಿಂದ ಸಹಕಾರಿ ತತ್ವಗಳ ಮತ್ತು ಆಚರಣೆಗಳ ಬೋಧನೆಗೆ, ಶಿಕ್ಷಣ - ತರಬೇತಿ ನೀಡುವುದಕ್ಕೆ, ಪ್ರಚಾರ ಕಾರ್ಯ ಕೈಗೊಳ್ಳುವುದಕ್ಕೆ ಸಹಾಯಕವಾಯಿತು. ಈ ಸಂಸ್ಥೆಯನ್ನು ರಾಜ್ಯ ಪುನರ್ ವಿಂಗಡನಾ ಸಮಯದಲ್ಲಿ ಮೈಸೂರು ರಾಜ್ಯ ಸಹಕಾರ ಯೂನಿಯನ್ ಎಂದು ಪುನರ್ ನಾಮಕರಣ ಮಾಡಲಾಯಿತು. ಹಾಗೆಯೇ 1987 ರಲ್ಲಿ ಸರ್ಕಾರಿ ಆದೇಶದನ್ವಯ 4 ಸಹಕಾರಿ ಸಂಸ್ಥೆಗಳಾದ [(1) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಯೂನಿಯನ್ ನಿ., ಬೆಂಗಳೂರು (2) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಭವನ ನಿ., ಬೆಂಗಳೂರು (3) ಕರ್ನಾಟಕ ಸಹಕಾರ ಮುದ್ರಣಾಲಯ ನಿ., ಬೆಂಗಳೂರು ಮತ್ತು (4) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಪ್ರಕಾಶನ ಮಂದಿರ ನಿ.,  ಬೆಂಗಳೂರು] ಇವುಗಳನ್ನು ಒಗ್ಗೂಡಿಸಿ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಮಹಾಮಂಡಳ ಎಂದು ತಿದ್ದುಪಡಿಯಾಗಿ, ತಿದ್ದುಪಡಿ ಆದೇಶ ನಂ.ಪಿ.ಎ.ಸಿ/ಖಉಓ/8/15585/87-88 ದಿನಾಂಕ:22.04.1987 ರಂತೆ ಉಪನಿಯಮಗಳ ತಿದ್ದುಪಡಿಯಾಗಿ ರಚಿತವಾಗಿರುತ್ತದೆ. 
-<br> <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ಈ ಸಂಸ್ಥೆಯ ಕಾರ್ಯಚಟುವಟಿಕೆಗಳು ಎಲ್ಲರ ಪ್ರಶಂಸೆಗೆ ಪಾತ್ರವಾಗಿದೆ. ಸಂಸ್ಥೆಯ ರಜತ ಮಹೋತ್ಸವ, ಸುವರ್ಣ ಮಹೋತ್ಸವ ಮತ್ತು ವಜ್ರ ಮಹೋತ್ಸವವನ್ನು ಆಚರಿಸಲಾಗಿದೆ. </p>
-  <br><br>
+				<div id="genraInfo">
+					<fieldset class="border">
+						<legend2 class='text-left'> </legend>
+						<p id="innerPara">
+						<div class="text-center">
+							<h2>ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಮಹಾಮಂಡಳ ನಡೆದು ಬಂದ ದಾರಿ</h2>
+						</div>
+						<p>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 ದಶಕಗಳಷ್ಟು ಹಿಂದೆ ಸಮಾನ ಮನಸ್ಕರ
+							ಕೂಟವೊಂದು ಸಹಕಾರ ತತ್ವ ಪ್ರಚಾರಕ್ಕಾಗಿ ಹಾಗೂ ಸಹಕಾರ ಕ್ಷೇತ್ರದ ಬೆಳವಣಿಗೆಗೆ
+							ಅಗತ್ಯವಾದ ಶಿಕ್ಷಣ ನೀಡುವ ಉದ್ದೇಶದಿಂದ ಸಹಕಾರ ಸಂಸ್ಥೆಯೊಂದನ್ನು
+							ಸ್ಥಾಪಿಸಿದರು. ಸಹಕಾರ ಕ್ಷೇತ್ರದ ಚಟುವಟಿಕೆಗಳಿಗೆ ಪ್ರಚಾರ ನೀಡುವುದು ಇದರ
+							ಧ್ಯೇಯೋದ್ದೇಶವಾಗಿತ್ತು. ಸಮಾನ ಮನಸ್ಕರ ಈ ಪ್ರಯತ್ನದಿಂದ 1924 ಆಗಸ್ಟ್ 27
+							ರಂದು ಮೈಸೂರು ಪ್ರಾಂತೀಯ ಸಹಕಾರಿ ಸಂಸ್ಥೆಯೊಂದು ಅಸ್ತಿತ್ವಕ್ಕೆ ಬಂದಿತು.
+							ಇದರಿಂದ ಸಹಕಾರಿ ತತ್ವಗಳ ಮತ್ತು ಆಚರಣೆಗಳ ಬೋಧನೆಗೆ, ಶಿಕ್ಷಣ - ತರಬೇತಿ
+							ನೀಡುವುದಕ್ಕೆ, ಪ್ರಚಾರ ಕಾರ್ಯ ಕೈಗೊಳ್ಳುವುದಕ್ಕೆ ಸಹಾಯಕವಾಯಿತು. ಈ
+							ಸಂಸ್ಥೆಯನ್ನು ರಾಜ್ಯ ಪುನರ್ ವಿಂಗಡನಾ ಸಮಯದಲ್ಲಿ ಮೈಸೂರು ರಾಜ್ಯ ಸಹಕಾರ
+							ಯೂನಿಯನ್ ಎಂದು ಪುನರ್ ನಾಮಕರಣ ಮಾಡಲಾಯಿತು. ಹಾಗೆಯೇ 1987 ರಲ್ಲಿ ಸರ್ಕಾರಿ
+							ಆದೇಶದನ್ವಯ 4 ಸಹಕಾರಿ ಸಂಸ್ಥೆಗಳಾದ [(1) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಯೂನಿಯನ್
+							ನಿ., ಬೆಂಗಳೂರು (2) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಭವನ ನಿ., ಬೆಂಗಳೂರು (3)
+							ಕರ್ನಾಟಕ ಸಹಕಾರ ಮುದ್ರಣಾಲಯ ನಿ., ಬೆಂಗಳೂರು ಮತ್ತು (4) ಕರ್ನಾಟಕ ರಾಜ್ಯ
+							ಸಹಕಾರ ಪ್ರಕಾಶನ ಮಂದಿರ ನಿ., ಬೆಂಗಳೂರು] ಇವುಗಳನ್ನು ಒಗ್ಗೂಡಿಸಿ ಕರ್ನಾಟಕ
+							ರಾಜ್ಯ ಸಹಕಾರ ಮಹಾಮಂಡಳ ಎಂದು ತಿದ್ದುಪಡಿಯಾಗಿ, ತಿದ್ದುಪಡಿ ಆದೇಶ
+							ನಂ.ಪಿ.ಎ.ಸಿ/ಖಉಓ/8/15585/87-88 ದಿನಾಂಕ:22.04.1987 ರಂತೆ ಉಪನಿಯಮಗಳ
+							ತಿದ್ದುಪಡಿಯಾಗಿ ರಚಿತವಾಗಿರುತ್ತದೆ. <br> <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ಈ ಸಂಸ್ಥೆಯ ಕಾರ್ಯಚಟುವಟಿಕೆಗಳು
+							ಎಲ್ಲರ ಪ್ರಶಂಸೆಗೆ ಪಾತ್ರವಾಗಿದೆ. ಸಂಸ್ಥೆಯ ರಜತ ಮಹೋತ್ಸವ, ಸುವರ್ಣ ಮಹೋತ್ಸವ
+							ಮತ್ತು ವಜ್ರ ಮಹೋತ್ಸವವನ್ನು ಆಚರಿಸಲಾಗಿದೆ.
+						</p>
+						<br>
+						<br>
 
-  <u><h5>ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಮಹಾಮಂಡಳದ ಕಾರ್ಯಚಟುವಟಿಕೆಗಳು</h5><br></u>
-  <p>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ಸಹಕಾರ ಚಳುವಳಿಯ ಬೆಳವಣಿಗೆಗಾಗಿ ಅಗತ್ಯವಾದ ಶಿಕ್ಷಣ, ತರಬೇತಿ ನೀಡುವುದು ಹಾಗೂ ಸಹಕಾರ ಚಟುವಟಿಕೆಗಳಿಗೆ ವ್ಯಾಪಕ ಪ್ರಚಾರ ನೀಡುವುದು ಮಹಾಮಂಡಳದ ಉದ್ದೇಶವಾಗಿದೆ.
-  <br>
-<ul>
-  <li>
-  ಸಹಕಾರ ಶಿಕ್ಷಣದಡಿಯಲ್ಲಿ ಸದಸ್ಯ ಶಿಕ್ಷಣ ಮತ್ತು ಅಭಿವೃದ್ದಿ ಕಾರ್ಯಕ್ರಮವು ಯಶಸ್ವಿಯಾಗಿ ಹಾಗೂ ಪರಿಣಾಮಕಾರಿಯಾಗಿ ರಾಷ್ಟ್ರೀಯ ಸಹಕಾರ ಯೂನಿಯನ್‍ನ ಮಾರ್ಗದರ್ಶನದೊಂದಿಗೆ 1957ರಲ್ಲಿ ಜಾರಿಗೆ ಬಂತು. ಈ ಯೋಜನೆಯಡಿಯಲ್ಲಿ ಸಹಕಾರ ಸಂಘಗಳ ಕಾರ್ಯದಶಿಗಳಿಗೆ, ಸದಸ್ಯರುಗಳಿಗೆ, ಆಡಳಿತ ಮಂಡಳಿ ಸದಸ್ಯರು, ಸಿಬ್ಬಂದಿಗಳಿಗೆ, ಮಹಿಳಾ ಮತ್ತು ಪರಿಶಿಷ್ಟ ಜಾತಿ ಪರಿಶಿಷ್ಟ ಪಂಗಡ ಸದಸ್ಯರುಗಳಿಗೆ ಶಿಕ್ಷಣ ನೀಡುವುದು.
-</li>
-<li>
-ಸಹಕಾರ ಕ್ಷೇತ್ರದಿಂದ ದೂರವೇ ಉಳಿದಿದ್ದ ಮಹಿಳೆಯರನ್ನು ಈ ಕ್ಷೇತ್ರಕ್ಕೆ ತರಲು ಮಹಾಮಂಡಳವು ವಿಶೇಷ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನಡೆಸಿದ್ದು, 1966ರಲ್ಲಿ ಪ್ರತ್ಯೇಕವಾಗಿ ಮಹಿಳಾ ವಿಭಾಗವನ್ನು ಆರಂಭಿಸಿ ಸದಸ್ಯ ಶಿಕ್ಷಣವನ್ನು ತೀವ್ರಗೊಳಿಸಿತು.
-</li>
-<li>
-ಮಹಾಮಂಡಳವು ಸಹಕಾರ ಕ್ಷೇತ್ರದ ಸಿಬ್ಬಂದಿಗಳ ತರಬೇತಿಗಾಗಿ 8 ತರಬೇತಿ ಸಂಸ್ಥೆಗಳನ್ನು ಹೊಂದಿದ್ದು, 24 ವಾರಗಳ ಡಿಪ್ಲೋಮಾ ಇನ್ ಕೋ- ಆಪರೇಟಿವ್ ಮ್ಯಾನೇಜ್‍ಮೆಂಟ್ ತರಬೇತಿಯನ್ನು ನೀಡಲಾಗುತ್ತಿದೆ. 
-</li>
-</ul>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಮಹಾಮಂಡಳ ಕಳೆದ 48 ವರ್ಷಗಳಿಂದ ಸಹಕಾರ ವಾರಪತ್ರಿಕೆಯನ್ನು ಪ್ರಕಟಿಸುತ್ತಿದೆ. ಈ ಪತ್ರಿಕೆಯಲ್ಲಿ ಸಹಕಾರಕ್ಕೆ ಸಂಬಂಧಪಟ್ಟ ಸರ್ಕಾರದ/ರಿಜಿಸ್ಟ್ರಾರ್‍ರವರ ಆದೇಶಗಳು, ಸುತ್ತೋಲೆಗಳು, ಉತ್ತಮ ಸಹಕಾರ ಸಂಘಗಳ ಬಗ್ಗೆ ಪ್ರಗತಿ ಚಿತ್ರಗಳು, ಉತ್ತಮ ಸಹಕಾರಿಗಳ ಜೊತೆಗೆ ಸಂದರ್ಶನ, ಸಂಘ ಸಂಸ್ಥೆಗಳ ಬಗ್ಗೆ ಲೇಖನ, ಸಹಕಾರಿ ಕ್ಷೇತ್ರದ ಸುದ್ದಿಗಳನ್ನು ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ.
-</p>
-</p>
-</fieldset>
-</div>
+						<u><h5>ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಮಹಾಮಂಡಳದ ಕಾರ್ಯಚಟುವಟಿಕೆಗಳು</h5> <br></u>
+						<p>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ಸಹಕಾರ ಚಳುವಳಿಯ ಬೆಳವಣಿಗೆಗಾಗಿ
+							ಅಗತ್ಯವಾದ ಶಿಕ್ಷಣ, ತರಬೇತಿ ನೀಡುವುದು ಹಾಗೂ ಸಹಕಾರ ಚಟುವಟಿಕೆಗಳಿಗೆ ವ್ಯಾಪಕ
+							ಪ್ರಚಾರ ನೀಡುವುದು ಮಹಾಮಂಡಳದ ಉದ್ದೇಶವಾಗಿದೆ. <br>
+						<ul>
+							<li>ಸಹಕಾರ ಶಿಕ್ಷಣದಡಿಯಲ್ಲಿ ಸದಸ್ಯ ಶಿಕ್ಷಣ ಮತ್ತು ಅಭಿವೃದ್ದಿ
+								ಕಾರ್ಯಕ್ರಮವು ಯಶಸ್ವಿಯಾಗಿ ಹಾಗೂ ಪರಿಣಾಮಕಾರಿಯಾಗಿ ರಾಷ್ಟ್ರೀಯ ಸಹಕಾರ
+								ಯೂನಿಯನ್‍ನ ಮಾರ್ಗದರ್ಶನದೊಂದಿಗೆ 1957ರಲ್ಲಿ ಜಾರಿಗೆ ಬಂತು. ಈ
+								ಯೋಜನೆಯಡಿಯಲ್ಲಿ ಸಹಕಾರ ಸಂಘಗಳ ಕಾರ್ಯದಶಿಗಳಿಗೆ, ಸದಸ್ಯರುಗಳಿಗೆ, ಆಡಳಿತ
+								ಮಂಡಳಿ ಸದಸ್ಯರು, ಸಿಬ್ಬಂದಿಗಳಿಗೆ, ಮಹಿಳಾ ಮತ್ತು ಪರಿಶಿಷ್ಟ ಜಾತಿ ಪರಿಶಿಷ್ಟ
+								ಪಂಗಡ ಸದಸ್ಯರುಗಳಿಗೆ ಶಿಕ್ಷಣ ನೀಡುವುದು.</li>
+							<li>ಸಹಕಾರ ಕ್ಷೇತ್ರದಿಂದ ದೂರವೇ ಉಳಿದಿದ್ದ ಮಹಿಳೆಯರನ್ನು ಈ
+								ಕ್ಷೇತ್ರಕ್ಕೆ ತರಲು ಮಹಾಮಂಡಳವು ವಿಶೇಷ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನಡೆಸಿದ್ದು,
+								1966ರಲ್ಲಿ ಪ್ರತ್ಯೇಕವಾಗಿ ಮಹಿಳಾ ವಿಭಾಗವನ್ನು ಆರಂಭಿಸಿ ಸದಸ್ಯ
+								ಶಿಕ್ಷಣವನ್ನು ತೀವ್ರಗೊಳಿಸಿತು.</li>
+							<li>ಮಹಾಮಂಡಳವು ಸಹಕಾರ ಕ್ಷೇತ್ರದ ಸಿಬ್ಬಂದಿಗಳ ತರಬೇತಿಗಾಗಿ 8 ತರಬೇತಿ
+								ಸಂಸ್ಥೆಗಳನ್ನು ಹೊಂದಿದ್ದು, 24 ವಾರಗಳ ಡಿಪ್ಲೋಮಾ ಇನ್ ಕೋ- ಆಪರೇಟಿವ್
+								ಮ್ಯಾನೇಜ್‍ಮೆಂಟ್ ತರಬೇತಿಯನ್ನು ನೀಡಲಾಗುತ್ತಿದೆ.</li>
+						</ul>
+						<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಹಕಾರ ಮಹಾಮಂಡಳ
+						ಕಳೆದ 48 ವರ್ಷಗಳಿಂದ ಸಹಕಾರ ವಾರಪತ್ರಿಕೆಯನ್ನು ಪ್ರಕಟಿಸುತ್ತಿದೆ. ಈ
+						ಪತ್ರಿಕೆಯಲ್ಲಿ ಸಹಕಾರಕ್ಕೆ ಸಂಬಂಧಪಟ್ಟ ಸರ್ಕಾರದ/ರಿಜಿಸ್ಟ್ರಾರ್‍ರವರ ಆದೇಶಗಳು,
+						ಸುತ್ತೋಲೆಗಳು, ಉತ್ತಮ ಸಹಕಾರ ಸಂಘಗಳ ಬಗ್ಗೆ ಪ್ರಗತಿ ಚಿತ್ರಗಳು, ಉತ್ತಮ
+						ಸಹಕಾರಿಗಳ ಜೊತೆಗೆ ಸಂದರ್ಶನ, ಸಂಘ ಸಂಸ್ಥೆಗಳ ಬಗ್ಗೆ ಲೇಖನ, ಸಹಕಾರಿ ಕ್ಷೇತ್ರದ
+						ಸುದ್ದಿಗಳನ್ನು ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ.
+						</p>
+						</p>
+					</fieldset>
+				</div>
+			</div>
+			<div class="col-md-2 custRightDivMD">
+				<fieldset class="border">
+					<legend class='text-left'>Help Line</legend>
+					<div id="rightId"></div>
+				</fieldset>
+			</div>
+		</div>
+		<!-- footer here-->
+		<div id="footerId"></div>
 
-
-</div>
-
- <div class="col-md-2 custRightDivMD">
-      <fieldset class="border" >
-        <legend class ='text-left'>Help Line</legend>
-        <ul>
-          <li>
-            Phone no: +91 8892075276
-             ,+91 8660193339  
-          </li>
-          <li>
-            E-mail: apitotechnologies@gmail.com
-          </li>
-         
-        </ul>
-      </fieldset>
-    </div> 
-</div>
-  <hr class="mt-2 mb-3"/>
-  
-  
-    
-  <div class="bs-example">
-    <div class="bg-warning d-flex justify-content-between">
-        <div>&nbsp&nbspOwned And Maintained By: Karnataka State co-operative Federation Ltd., </div>
-        <div>Designed and Deveploed By: www.apito.in&nbsp&nbsp</div>
-    </div>
-</div>
-   <!-- <div class="row"></div>
-      <div class="col-md-12 footerDiv">
-        <div class="col-md-4">
-        Designed and Deveploed By:<br><br>
-        <img src="img/apito1.png" class="Responsive image" />
-      
-        <br>  www.apito.in</p>
-          </div>
-  
-      </div>
-  </div> -->
-</div>
+	</div>
 </body>
-
-<script type="text/javascript"> 
-   
-
-</script>
 
 <script th:inline="javascript">
 /*<![CDATA[*/
@@ -257,4 +174,9 @@
 			}
 /*]]>*/
 </script>
+
+<script th:src="@{/js/jquery-3.5.1.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/supporters.js}" crossorigin="anonymous"></script>
 </html>
