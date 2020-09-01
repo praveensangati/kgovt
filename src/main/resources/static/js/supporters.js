@@ -85,9 +85,17 @@ let warningHtml= `<div class="modal fade right" id="modalAbandonedCart" tabindex
 						</div>
 
 						<div>
-							<p style="padding-left: 10%;">Photo upload ahead please keep
-								the photos scanned in required format and please keep the
+							<p style="padding-left: 10%;"> Please keep the following documents
+								scanned in required format and please keep the
 								restricted file to 1mb</p>
+								
+							   <ul>
+					              <li>NOC</li>
+					              <li>Photo Copy</li>
+					              <li>Signature</li>
+					              <li>Address Proof</li>
+					              <li>Employee Certificate</li>
+					            </ul>	
 						</div>
 					</div>
 				</div>

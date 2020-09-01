@@ -10,7 +10,7 @@ $(function(){
 	      return;
 	    }
 
-	    else if(parseInt(obtained) < parseInt(total)){
+	    else if(parseInt(obtained) <= parseInt(total)){
 
 	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
 	    }else{
@@ -22,6 +22,8 @@ $(function(){
 	    }
 
 	  });
+	  
+	  //test comment
 
 	  $('#puc_marks').change(function(){
 
@@ -33,7 +35,7 @@ $(function(){
 	      return;
 	    }
 
-	    else if(parseInt(obtained) < parseInt(total)){
+	    else if(parseInt(obtained) <= parseInt(total)){
 
 	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
 	    }else{
@@ -55,7 +57,7 @@ $(function(){
 	      return;
 	    }
 
-	    else if(parseInt(obtained) < parseInt(total)){
+	    else if(parseInt(obtained) <= parseInt(total)){
 
 	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
 	    }else{
@@ -77,7 +79,7 @@ $(function(){
 	      return;
 	    }
 
-	    else if(parseInt(obtained) < parseInt(total)){
+	    else if(parseInt(obtained) <= parseInt(total)){
 
 	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
 	    }else{
@@ -94,7 +96,7 @@ $(function(){
 	    var obtained = document.getElementById('sslc_marks').value;
 	    var total = document.getElementById('sslc_totalmarks').value;
 
-	    if(parseInt(obtained) < parseInt(total)){
+	    if(parseInt(obtained) <= parseInt(total)){
 
 	      document.getElementById('sslc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
 	    }else{
@@ -111,7 +113,7 @@ $(function(){
 	    var obtained = document.getElementById('puc_marks').value;
 	    var total = document.getElementById('puc_totalmarks').value;
 
-	    if(parseInt(obtained) < parseInt(total)){
+	    if(parseInt(obtained) <= parseInt(total)){
 
 	      document.getElementById('puc_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
 	    }else{
@@ -129,7 +131,7 @@ $(function(){
 	    var obtained = document.getElementById('ug_marks').value;
 	    var total = document.getElementById('ug_totalmarks').value;
 
-	    if(parseInt(obtained) < parseInt(total)){
+	    if(parseInt(obtained) <= parseInt(total)){
 
 	      document.getElementById('ug_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
 	    }else{
@@ -145,7 +147,7 @@ $(function(){
 	    var obtained = document.getElementById('pg_marks').value;
 	    var total = document.getElementById('pg_totalmarks').value;
 
-	    if(parseInt(obtained) < parseInt(total)){
+	    if(parseInt(obtained) <= parseInt(total)){
 
 	      document.getElementById('pg_percentage').value = (parseInt(obtained) / parseInt(total)) * 100;
 	    }else{
@@ -281,7 +283,7 @@ $(function(){
         document.getElementById('e_age').style.color = 'red';
         flag = 1;
       }
-      else if(document.getElementById('age').value < 18 || document.getElementById('age').value >= 60){
+      else if(document.getElementById('age').value < 15 || document.getElementById('age').value >= 60){
         document.getElementById('e_age').innerHTML = "**Not within proper age limit"; 
           document.getElementById('e_age').style.color = 'red';
         flag = 1;
@@ -641,8 +643,9 @@ $(function(){
         if( photoUp == ''){
           document.getElementById('photo').focus();
           // change 5 e_photo
-          document.getElementById('e_photo').value = 'Photo is required ';
+          document.getElementById('e_photo').innerHTML = '**Photo is required ';
           document.getElementById('e_photo').style.color = 'red';
+          console.log('inside_photo');
           
           flag = 1;
         }
@@ -654,8 +657,9 @@ $(function(){
         if( nocUp == ''){
           document.getElementById('noc_certificate').focus();
           // change 5 e_photo
-          document.getElementById('e_noc').value = 'NOC is required ';
+          document.getElementById('e_noc').innerHTML = '**NOC is required ';
           document.getElementById('e_noc').style.color = 'red';
+          console.log('inside_noc');
           
           flag = 1;
         }
@@ -667,9 +671,9 @@ $(function(){
         if( addressUp == ''){
           document.getElementById('address_proof').focus();
           // change 5 e_photo
-          document.getElementById('e_address12').value = 'NOC is required ';
+          document.getElementById('e_address12').innerHTML = '**Address Proof is required ';
           document.getElementById('e_address12').style.color = 'red';
-          
+          console.log('inside_address');
           flag = 1;
         }
         else {
@@ -680,9 +684,9 @@ $(function(){
         if( certUp == ''){
           document.getElementById('e_certificate').focus();
           // change 5 e_photo
-          document.getElementById('e_empolyee').value = 'NOC is required ';
+          document.getElementById('e_empolyee').innerHTML = '**Certificate is required ';
           document.getElementById('e_empolyee').style.color = 'red';
-          
+          console.log('inside_cert');
           flag = 1;
         }
         else {
@@ -693,8 +697,9 @@ $(function(){
         if( signatureUp == ''){
           document.getElementById('signature').focus();
           // change 5 e_photo
-          document.getElementById('e_sig').value = 'NOC is required ';
+          document.getElementById('e_sig').innerHTML = '**Signature is required ';
           document.getElementById('e_sig').style.color = 'red';
+          console.log('inside_sign');
           
           flag = 1;
         }
@@ -740,15 +745,20 @@ $('#changetabbutton9').click(function(e){
 
 
 function ValidateSize(file) {
-    var FileSize = file.files[0].size / 1024 / 1024; // in MB
+
+	try{
+    var FileSize = file.files[0].size / 1024 / 1024 / 1; // in MB
     //console.log(file.files[0].filePath);
     console.log('asd');
-
-    if (FileSize > 2) {
+	}
+	catch(e){
+	}
+    if (FileSize > 1) {
         alert('File size exceeds 2 MB');
         $(file).val(''); //for clearing with Jquery
        
        console.log('asd');
+       return;
     } 
     
     else {
