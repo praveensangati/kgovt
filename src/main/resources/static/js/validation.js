@@ -747,17 +747,18 @@ $('#changetabbutton9').click(function(e){
 function ValidateSize(file) {
 
 	try{
-    var FileSize = file.files[0].size / 1024 / 1024; // in MB
+    var FileSize = file.files[0].size / 1024 / 1024 / 1; // in MB
     //console.log(file.files[0].filePath);
     console.log('asd');
 	}
 	catch(e){
 	}
-    if (FileSize > 2) {
+    if (FileSize > 1) {
         alert('File size exceeds 2 MB');
         $(file).val(''); //for clearing with Jquery
        
        console.log('asd');
+       return;
     } 
     
     else {
