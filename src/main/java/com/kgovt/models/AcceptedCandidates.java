@@ -40,16 +40,9 @@ public class AcceptedCandidates implements Serializable,Cloneable {
 	@Column(name="applicant_number ")
 	private Long applicantNumber;
 	
-	@Column(name="user_id")
-	private Long userId;
-	
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="status")
-	private String status;
 	
-	@Column(name="comment")
-	private String comment;
 	
 }

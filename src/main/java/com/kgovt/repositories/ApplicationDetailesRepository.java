@@ -1,5 +1,7 @@
 package com.kgovt.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,6 +17,8 @@ public interface ApplicationDetailesRepository extends JpaRepository<Application
 	Long max();
 	
 	long deleteByApplicantNumber(long ApplicantNumber);
+	
+	List<ApplicationDetailes> findByPreOfCenter(String preOfCenter);
 	
 	
 }

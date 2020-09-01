@@ -220,9 +220,9 @@ public class ApplicationDetailesService extends AppConstants {
 
 	private static final Comparator<ApplicationDetailes> EMPTY_COMPARATOR = (e1, e2) -> 0;
 
-	public Page<ApplicationDetailes> getApplicationDetailess(PagingRequest pagingRequest) {
+	public Page<ApplicationDetailes> getApplicationDetailess(PagingRequest pagingRequest,String region) {
 		try {
-			List<ApplicationDetailes> applicationDetailess = applicationDetailesRepository.findAll();
+			List<ApplicationDetailes> applicationDetailess = applicationDetailesRepository.findByPreOfCenter(region);
 
 			return getPage(applicationDetailess, pagingRequest);
 

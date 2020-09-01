@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,14 +25,19 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper=false)
-@Table(name="ADMIN")
+@Table(name="ADMIN_USER")
 public class Admin implements Serializable,Cloneable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "admin_id")
-	private Long adminId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "record_id")
+	private Long recordId;
+	
+	
+	@Column(name = "admin_name")
+	private String adminName;
 	
 	@Column(name="password")
 	private String password;

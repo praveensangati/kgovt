@@ -34,9 +34,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kgovt.models.AcceptedCandidates;
+import com.kgovt.models.Admin;
 import com.kgovt.models.ApplicationDetailes;
 import com.kgovt.models.PaymentDetails;
 import com.kgovt.models.Status;
+import com.kgovt.services.AcceptedService;
+import com.kgovt.services.AdminService;
 import com.kgovt.services.ApplicationDetailesService;
 import com.kgovt.services.PaymentDetailsService;
 import com.kgovt.services.StatusService;
@@ -50,6 +54,12 @@ public class AppicationController extends AppConstants {
 
 	@Autowired
 	private ApplicationDetailesService appicationService;
+	
+	@Autowired
+	private AdminService adminService;
+	
+	@Autowired
+	private AcceptedService acceptedService;
 
 	@Autowired
 	private PaymentDetailsService paymentDetailsService;
@@ -73,17 +83,34 @@ public class AppicationController extends AppConstants {
 	}
 
 	@GetMapping("/adminLogin")
-	public String adminView() {
+	public String adminView(Model model,Admin admin) {
+		//Admin obj =  adminService.findByAdminName(admin.getAdminName());
+		Admin obj= adminService.findByRegion(admin.getRegion());
+		if(obj.getPassword().equalsIgnoreCase(admin.getPassword())) {
+			model.addAttribute("region", admin.getRegion());
+		}else {
+			model.addAttribute("error", "1");
+		}
 		return "application_list";
 	}
-
+	@GetMapping("/saveAdmin")
+	public String saveAdmin() {
+		Admin admin =new Admin();
+		admin.setAdminName("Arun");
+		admin.setPassword("Arun");
+		admin.setRegion("Dharwad");
+		adminService.saveAdmin(admin);
+		return "";
+	}
 	@GetMapping("/list")
 	public String applicationlistPage() {
 		return "application_list";
 	}
 
 	@GetMapping("/admin")
-	public String admin() {
+	public String admin(Model model) {
+		model.addAttribute("admin", new Admin());
+		model.addAttribute("error", "0");
 		return "adminlogin";
 	}
 
@@ -144,11 +171,23 @@ public class AppicationController extends AppConstants {
 
 	@PostMapping(value = "/acceptViewData", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
-	public Map appectedData(@RequestParam Long adminId, @RequestParam Long applicantNo,@RequestParam Long userId,@RequestParam String password,@RequestParam String status,@RequestParam String comment) {
+	public Map appectedData(@RequestParam Long adminId, @RequestParam Long applicantNo,@RequestParam String status,@RequestParam String comment) {
 		HashMap<String, Object> returnData = new HashMap<>();
 		returnData.put("ERROR", "0");
-		
-		return null;
+		Status stat=statusService.findByApplicantNumber(applicantNo);
+		stat.setStatus(status);
+		stat.setComment(comment);
+		statusService.saveStatus(stat);
+		//statusService.setStatusByApplicantNumber(status, comment,applicantNo);
+		if(status.equals("A")) {
+			AcceptedCandidates acceptedCandidated = new AcceptedCandidates();
+			acceptedCandidated.setAdminId(adminId);
+			acceptedCandidated.setApplicantNumber(applicantNo);
+			acceptedCandidated.setPassword(AppUtilities.generateCommonLangPassword());
+			acceptedService.saveAcceptedCandidates(acceptedCandidated);
+			returnData.put("ERROR", "0");
+		}
+		return returnData;
 		
 	}
 	@PostMapping(value = "/checkStatus", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {

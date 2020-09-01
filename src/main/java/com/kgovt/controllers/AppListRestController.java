@@ -3,6 +3,7 @@ package com.kgovt.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kgovt.datatable.paging.Page;
@@ -16,7 +17,7 @@ public class AppListRestController {
 	private ApplicationDetailesService appicationService;
 	
 	@PostMapping("/allApplicationData")
-	public Page<ApplicationDetailes> list(@RequestBody PagingRequest pagingRequest) {
-		return appicationService.getApplicationDetailess(pagingRequest);
+	public Page<ApplicationDetailes> list(@RequestBody PagingRequest pagingRequest,@RequestParam String region) {
+		return appicationService.getApplicationDetailess(pagingRequest,region);
 	}
 }

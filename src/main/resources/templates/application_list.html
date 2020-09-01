@@ -89,12 +89,14 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/datatables.js}"></script>
 
-<script>
+<script th:inline="javascript">
+/*<![CDATA[*/
+	
     $('#example').DataTable({
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "/allApplicationData",
+            "url": "/allApplicationData?region="+[[${region}]],
             "type": "POST",
             "dataType": "json",
             "contentType": "application/json",
@@ -118,6 +120,7 @@
     	 window.location.href = "/viewAppData?applicantNumber="+data;
     }
     
-</script>
+    /*]]>*/
+    </script>
 </body>
 </html>

@@ -52,4 +52,7 @@ public class Status  implements Serializable, Cloneable{
 	public long applicantNumber;
 	
 	private Long mobile ;
+	
+	@Column(name="admin_id")
+	private Long adminId;
 }
