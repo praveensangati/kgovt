@@ -1,3 +1,4 @@
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -23,7 +24,7 @@
     <script th:src="@{/js/yearpicker.js}" crossorigin="anonymous"></script>
     
     </head>
-    
+    <body>
     
         <div class="container-fluid">
             <div class="row">
@@ -78,8 +79,7 @@
                                     id="personal-tab" href="#View">Personal Details</a></li>
                             </ul>
                         </div>
-                        <form th:action="@{/save}" class="form-horizontal" role="form"
-                            method="POST" enctype="multipart/form-data" onkeypress="return disableEnterKey(event)">
+                       
                             <div class="card-body">
                                 <div class="tab-content" id="myTabContent"
                                     style="text-align: left;">
@@ -296,13 +296,13 @@
                                         </div>
                                         
                                 <button class="btn btn-danger">Reject</button> 
-                                <button class="btn btn-success">Accept</button>
+                                <button type="submit" onclick="acceptData()" class="btn btn-success">Accept</button>
                                 <button class="btn btn-info" href="#">Go Back</button>
     
                                 </div>
                             </div>
                     </div>
-                    </form>
+                   
                 </div>
     
                 <div class="col-md-2 custRightDivMD">
@@ -326,5 +326,29 @@
                 <div>Designed and Deveploed By: www.apito.in</div>
             </div>
         </div>
-    
         
+        <script type="text/javascript">
+        function acceptData(){
+        	let adminId = '12345';
+        	let applicantNo = '1003';
+        	let userId = '234823';
+        	let password = '2020';
+        	let status = 'Accepted'
+        	let comment = 'All the best';
+        	
+        	$.ajax({
+				type : 'POST',
+				url : "/acceptViewData?adminId="+adminId+"&applicantNo="+applicantNo+"&userId="+userId+"&password="+password+"&status="+status+"&comment="+comment,
+				contentType : "application/json; charset=utf-8",
+				data : {
+					
+				},
+				success : function(result) {
+					alert('success');
+				}
+			});
+        }
+        
+        </script>
+    	</body>
+      </html>

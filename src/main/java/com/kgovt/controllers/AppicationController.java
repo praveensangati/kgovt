@@ -142,6 +142,15 @@ public class AppicationController extends AppConstants {
 		}
 	}
 
+	@PostMapping(value = "/acceptViewData", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {MediaType.APPLICATION_JSON_VALUE })
+	@ResponseBody
+	public Map appectedData(@RequestParam Long adminId, @RequestParam Long applicantNo,@RequestParam Long userId,@RequestParam String password,@RequestParam String status,@RequestParam String comment) {
+		HashMap<String, Object> returnData = new HashMap<>();
+		returnData.put("ERROR", "0");
+		
+		return null;
+		
+	}
 	@PostMapping(value = "/checkStatus", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
