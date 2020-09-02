@@ -17,7 +17,7 @@ public class AppListRestController {
 	private ApplicationDetailesService appicationService;
 	
 	@PostMapping("/allApplicationData")
-	public Page<ApplicationDetailes> list(@RequestBody PagingRequest pagingRequest,@RequestParam String region) {
-		return appicationService.getApplicationDetailess(pagingRequest,region);
+	public Page<ApplicationDetailes> list(@RequestBody PagingRequest pagingRequest,@RequestParam String region, String status) {
+		return appicationService.getApplicationDetailess(pagingRequest,region, status);
 	}
 }

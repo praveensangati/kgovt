@@ -8,7 +8,7 @@
 
 <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
 	crossorigin="anonymous" />
-<link th:rel="stylesheet" th:href="@{/css/datatables.css}"/>
+<link th:rel="stylesheet" th:href="@{/css/datatables.css}" />
 <link th:rel="stylesheet" th:href="@{/css/style1.css}"
 	crossorigin="anonymous" />
 <title>Karnataka Govt Application</title>
@@ -49,29 +49,44 @@
 			</div>
 		</nav>
 		<div class="container">
-			
-					<table id="example" class="table table-bordered table-responsive"
-						style="width: 100%">
-						<thead>
-							<tr>
-								<th>Application Number</th>
-								<th>Mobile</th>
-								<th>Name</th>
-								<th>Email</th>
-								<th>Applied Date</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<th>Application Number</th>
-								<th>Mobile</th>
-								<th>Name</th>
-								<th>Email</th>
-								<th>Applied Date</th>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
+			<table border="0" cellspacing="5" cellpadding="5">
+				<tbody>
+					<tr>
+						<td><label>Filter By Status</label></td>
+						<td><select name="statusFilter" id="statusFilter"
+								class="form-control">
+									<option selected value="">All Status</option>
+									<option value="A">Accepted</option>
+									<option value="R">Rejected</option>
+									<option value="I">In Verification</option>
+							</select></td>
+					</tr>
+				</tbody>
+			</table>
+			<table id="applicationList" class="table table-bordered table-responsive"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th>Status</th>
+						<th>Application Number</th>
+						<th>Mobile</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Applied Date</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<th>Status</th>
+						<th>Application Number</th>
+						<th>Mobile</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Applied Date</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 	</div>
 
 	<div class="bs-example">
@@ -84,41 +99,69 @@
 	</div>
 
 
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/datatables.js}"></script>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/datatables.js}"></script>
 
-<script th:inline="javascript">
+	<script th:inline="javascript">
 /*<![CDATA[*/
 	
-    $('#example').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": "/allApplicationData?region="+[[${region}]],
-            "type": "POST",
-            "dataType": "json",
-            "contentType": "application/json",
-            "data": function (d) {
-                return JSON.stringify(d);
-            }
-        },
-        "columns": [
-            {"data": "applicantNumber", "width": "20%",
-            	"render": function ( data, type, row, meta ) {
-            	      return '<span onclick=viewApp('+data+') style="text-decoration: underline;cursor:pointer">'+data+'</span>';
-            	    }},
-            {"data": "mobile","width": "20%"},
-            {"data": "name", "width": "20%"},
-            {"data": "email", "width": "20%"},
-            {"data": "creationDate", "width": "20%"}
-        ]
+	loadDatatablePlugin();
+	
+	function loadDatatablePlugin() {
+		var regionID = [[${region}]];
+		var status = $("#statusFilter").val();
+	    $('#applicationList').DataTable({
+	        "processing": true,
+	        "serverSide": true,
+	        "ajax": {
+	            "url": "/allApplicationData?region="+regionID+"&status="+status,
+	            "type": "POST",
+	            "dataType": "json",
+	            "contentType": "application/json",
+	            "data": function (d) {
+	                return JSON.stringify(d);
+	            }
+	        },
+	        "columns": [
+	        	{"data": "applicationStatus", "width": "15%",
+	            	"render": function ( data, type, row, meta ) {
+	            	      return applyStatusIcon(data);
+	            	    }},
+	            {"data": "applicantNumber", "width": "15%",
+	            	"render": function ( data, type, row, meta ) {
+	            	      return '<span onclick=viewApp('+data+') style="text-decoration: underline;cursor:pointer;color:blue">'+data+'</span>';
+	            	    }},
+	            {"data": "mobile","width": "10%"},
+	            {"data": "name", "width": "20%"},
+	            {"data": "email", "width": "20%"},
+	            {"data": "creationDate", "width": "20%"}
+	        ]
+	    });
+	}
+	
+    $("#statusFilter").change(function() {
+    	$("#applicationList").dataTable().fnDestroy();
+    	loadDatatablePlugin();
     });
     
     function viewApp(data){
     	 window.location.href = "/viewAppData?applicantNumber="+data;
     }
+    
+    function applyStatusIcon(data) {
+    	let icons = '';
+    	if(data == 'I') {
+    		icons = '<span class="verificationCSS" style="color: #736820;" title="Application is in verification">In Verification</span>';
+    	} else if(data == 'R') {
+    		icons = '<span class="rejectedCSS" style="color: red;" title="Application is Rejected">Rejected</span>';
+    	} else if(data == 'A') {
+    		icons = '<span class="acceptedCSS" style="color: green;" title="Application is Accepted">Accepted</span>';
+    	}
+    	return icons;
+    }
+   
     
     /*]]>*/
     </script>

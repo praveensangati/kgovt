@@ -19,10 +19,6 @@ public class AdminService extends AppConstants{
 	public Admin saveAdmin(Admin admin) {
 		return adminRepository.save(admin);
 	}
-	
-	public Admin findByAdminName(String adminName) {
-		return adminRepository.findByAdminName(adminName);
-	}
 
 	public Admin findByRegion(String region) {
 		return adminRepository.findByRegion(region);

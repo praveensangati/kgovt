@@ -1,42 +1,51 @@
 <html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
         crossorigin="anonymous" /> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
-    <link th:rel="stylesheet" th:href="@{/css/style1.css}" crossorigin="anonymous" />
-    <link th:rel="stylesheet" th:href="@{/css/yearpicker.css}" crossorigin="anonymous" />
-    
-    
-    <title>Karnataka Govt Application</title>
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <!-- <script th:src="@{/js/jquery-3.5.1.slim.min.js}" crossorigin="anonymous"></script> -->
-    <!-- <script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
-    <!-- <script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
-    <script th:src="@{/js/validation.js}" crossorigin="anonymous"></script>
-    <script th:src="@{/js/inputmask.js}" crossorigin="anonymous"></script>
-    <script th:src="@{/js/yearpicker.js}" crossorigin="anonymous"></script>
-    
-    </head>
-    <body>
-    
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 d-none d-sm-none d-md-block headerDiv">
-                    <img src="img/logo1.jpg">
-                  <p class="font-weight-normal" style="text-align:center; font-size:8ch; text-align:center;"> Karnataka State co-operative Federation Ltd.,</p>
-                  <p style="text-align:center; font-size: medium; color: rgb(121, 171, 236);"> Diploma in Co-operative Management (Distance Education)</p>
-                 </div>
-           </div>
-    
-            <!--Nav bar-->
-            <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link th:rel="stylesheet" th:href="@{/css/style1.css}"
+	crossorigin="anonymous" />
+<link th:rel="stylesheet" th:href="@{/css/yearpicker.css}"
+	crossorigin="anonymous" />
+
+
+<title>Karnataka Govt Application</title>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<!-- <script th:src="@{/js/jquery-3.5.1.slim.min.js}" crossorigin="anonymous"></script> -->
+<!-- <script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script> -->
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- <script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script> -->
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script th:src="@{/js/validation.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/inputmask.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/yearpicker.js}" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 d-none d-sm-none d-md-block headerDiv">
+				<img src="img/logo1.jpg">
+				<p class="font-weight-normal"
+					style="text-align: center; font-size: 8ch; text-align: center;">
+					Karnataka State co-operative Federation Ltd.,</p>
+				<p
+					style="text-align: center; font-size: medium; color: rgb(121, 171, 236);">
+					Diploma in Co-operative Management (Distance Education)</p>
+			</div>
+		</div>
+
+		<!--Nav bar-->
+		<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarNav" aria-controls="navbarNav"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -55,286 +64,367 @@
                     </ul>
                 </div>
             </nav> -->
-    
-            <div class="row">
-                <div class="col-md-2 custLeftDivMD">
-                    <fieldset class="border">
-                        <legend class='text-left'>Downloads</legend>
-                        <ul>
-                            <li><a href="./resource/Noc or Deputing Letter.pdf"
-                                rel="nofollow">NOC Template</a></li>
-                            <li><a href="./resource/Service Certificate.pdf"
-                                rel="nofollow">Service Certificate Template</a></li>
-                            <li><a th:href="@{/offline}">Offline Application Form</a></li>
-                        </ul>
-                    </fieldset>
-                </div>
-                <!-- Start of center-->
-                <div id="centerContent" class="col-md-8 custCentDivMD overflow-auto">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <ul id="mytabs" class="nav nav-tabs card-header-tabs pull-right"
-                                role="tablist">
-                                <li class="nav-item"><a class="nav-link active"
-                                    id="personal-tab" href="#View">Personal Details</a></li>
-                            </ul>
-                        </div>
-                       
-                            <div class="card-body">
-                                <div class="tab-content" id="myTabContent"
-                                    style="text-align: left;">
-                                    <!-- <div class="tab-pane fade show active" id="personal"
+
+		<div class="row">
+			<div class="col-md-2 custLeftDivMD">
+				<fieldset class="border">
+					<legend class='text-left'>Downloads</legend>
+					<ul>
+						<li><a href="./resource/Noc or Deputing Letter.pdf"
+							rel="nofollow">NOC Template</a></li>
+						<li><a href="./resource/Service Certificate.pdf"
+							rel="nofollow">Service Certificate Template</a></li>
+						<li><a th:href="@{/offline}">Offline Application Form</a></li>
+					</ul>
+				</fieldset>
+			</div>
+			<!-- Start of center-->
+			<div id="centerContent" class="col-md-8 custCentDivMD overflow-auto">
+				<div class="card text-center">
+					<div class="card-header">
+						<ul id="mytabs" class="nav nav-tabs card-header-tabs pull-right"
+							role="tablist">
+							<li class="nav-item"><a class="nav-link active"
+								id="personal-tab" href="#View">Personal Details</a></li>
+						</ul>
+					</div>
+
+					<div class="card-body">
+						<div class="tab-content" id="myTabContent"
+							style="text-align: left;">
+							<!-- <div class="tab-pane fade show active" id="personal"
                                         role="tabpanel" aria-labelledby="personal-tab">
                                         <div id="personDetailId"> -->
-                                            <div class="form-group">
-                                                <label>Mobile Number/ಮೊಬೈಲ್ ನಂಬರ: </label> 
-                                                <span th:text="${applicationDetailes.mobile}"></span>
-                                            </div>
-    
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Preference of center:
-                                                
-                                                </select> <span id="e_poc" th:text="${applicationDetailes.preOfCenter}"></span>
-                                            </div>
-    
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Name of the
-                                                    candidate/ಅರ್ಜಿದಾರರ ಹೆಸರು: </label>
-                                                    <span
-                                                    id="e_name" th:text="${applicationDetailes.name}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label> Father's Name/ ತಂದೆಯ ಹೆಸರು: </label> 
-                                                <span id="e_father" th:text="${applicationDetailes.fatherName}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Mother's Name/ ತಾಯಿಯ ಹೆಸರು: </label>
-                                                 <span id="e_mother" th:text="${applicationDetailes.motherName}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Gender: </label> 
-                                                </select> <span id="e_sex" th:text="${applicationDetailes.gender}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>D.O.B/ಹುಟ್ತಿದ ದಿನ: </label> <span id="e_dob" th:text="${applicationDetailes.dob}" ></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Age/ವಯಸ್ಸು: </label> 
-                                                 <span id="e_age" th:text="${applicationDetailes.age}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Religion/ಧರ್ಮ:</label> 
-                                                 <span id="e_religion" th:text="${applicationDetailes.religion}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Caste/ಜಾತಿ: </label> 
-                                                <span id="e_caste" th:text="${applicationDetailes.caste}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Nationality/ರಾಷ್ಟ್ರೀಯತೆ: </label> 
-                                                <span
-                                                    id="e_nationality" th:text="${applicationDetailes.nationality}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Residential Address/ವಾಸಸ್ಥಳದ ವಿಳಾಸ: </label>
-                                                <span id="e_address" th:text="${applicationDetailes.resAddress}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Pincode/ಅಂಚೆ: </label> 
-                                                <span id="e_pincode" th:text="${applicationDetailes.pincode}"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>E-Mail Address/ಇಮೇಲ್ ವಿಳಾಸ: </label> 
-                                                 <span
-                                                    id="e_email" th:text="${applicationDetailes.email}"></span>
-                                            </div>
+							<div class="form-group">
+								<label>Mobile Number/ಮೊಬೈಲ್ ನಂಬರ: </label> <span
+									th:text="${applicationDetailes.mobile}"></span>
+							</div>
 
-                                        <div class="form-group">
-                                            <h3>SSLC/ಎಸ್ಎಸ್ಎಲ್ಸಿ</h3>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Name of Institution/ Board/ University: </label> 
-                                             <span id="e_sslc_institution" th:text="${applicationDetailes.sslcInstitution}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Passing Year: </label> 
-                                           
-                                            <span id="e_sslc_pass" th:text="${applicationDetailes.sslcPassingYearMonth}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Total Marks: </label>
-                            
-                                            <span id="e_sslc_marks" th:text="${applicationDetailes.sslcTotalMarks}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Percentage(%) of Marks: </label>
-                                            <span id="e_sslc_percentage" th:text="${applicationDetailes.sslcPercentage}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Upload MarksCard/Certificate: </label> <span
-                                                id="e_sslc_certificate"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <h3>PUC or Diploma/ಪಿಯು ಅಥವಾ ಡಿಪ್ಲೊಮಾ</h3>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Name of Institution/ Board/ University:</label> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Passing Year</label> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Total Marks: </label> 
-                            
-                                        <!-- <label>(Obtained/Total): </label> -->
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Percentage(%) of Marks: </label> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>MarksCard/Certificate: </label> 
-                                            <span id="e_puc_certificate" th:text="${applicationDetailes.nationality}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                                <h3>Under Graduation/ಪದವಿ: </h3>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Name of Institution/ Board/ University:</label> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Passing Year: </label>
-                                        </div>
-                                        <div class="form-group">
-                                        <label>Total Marks:</label> 
-                                            
-                                        
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Percentage(%) of Marks:</label> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>MarksCard/Certificate:</label> 
-                                            <span id="e_ug_certificate"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <h3>Post Graduation/ಸ್ನಾತಕೋತ್ತರ ಪದವಿ</h3>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Name of Institution/ Board/ University:</label> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Passing Year:</label> 
-                                           
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Total Marks:</label> 
-                                           
-                                        
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Percentage(%) of Marks:</label> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>MarksCard/Certificate:</label> 
-                                            <span id="e_pg_certificate"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Name of Deputy Society/ಡೆಪ್ಯೂಟಿ ಸೊಸೈಟಿಯ ಹೆಸರ: </label> 
-                                            <span id="e_deputy_scoiety" th:text="${applicationDetailes.societyName}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Designation/ಹುದ್ದೆ: </label> <span
-                                                id="e_designation" th:text="${applicationDetailes.designation}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label> Date of Appointment/ನೇಮಕಾತಿ ದಿನಾಂಕದೆ:</label> <span
-                                                id="e_doa" th:text="${applicationDetailes.doa}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Period Of Service/ಸೇವೆಯ ಅವಧಿ: </label>  
-                                                <span id="e_period_of_service" th:text="${applicationDetailes.societyPreOfService}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Office Address/ವಿಳಾಸ*</label>
-                                            
-                                            <span id="e_office_address" th:text="${applicationDetailes.societAddress}"></span>
-    
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Office Phone Number/ದೂರವಾಣಿ ಸಂಖ್: </label> 
-                                            <span id="e_phone_number_office" th:text="${applicationDetailes.societyTelNumber}"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Office Pincode/ಪಿನ್ಕೋಡ್: </label> 
-                                            <span id="e_pincode_office" th:text="${applicationDetailes.societyPincode}"></span>
-                                        </div>
-                                
-                                        <div class="form-group">
-                                            <label>Photo: </label> 
-                                            <a th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
-                                            <span id="e_photo"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Address Proof: </label> 
-                                            <a th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
-                                            <span id="e_address12"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Employee Certificate:</label>
-                                            <a th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a> 
-                                            <span id="e_empolyee"></span>
-                                        </div>
-                                        <div class="form-group">
-                                        <label>NOC Certificate:</label> 
-                                        <a th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
-                                        <span id="e_noc"></span>
-                                        </div>
-                                        <div class="form-group">
-                                        <label>Signature: </label> 
-                                        <a th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
-                                        <span id="e_sig"></span>
-                                        </div>
-                                        
-                                <button type="button" class="btn btn-danger" onclick="acceptData('R')">Reject</button> 
-                                <button type="button" onclick="acceptData('A')" class="btn btn-success">Accept</button>
-                                <button class="btn btn-info" href="#">Go Back</button>
-    
-                                </div>
-                            </div>
-                    </div>
-                   
-                </div>
-    
-                <div class="col-md-2 custRightDivMD">
-                    <fieldset class="border">
-                        <legend class='text-left'>Help Line</legend>
-                        <ul>
-                            <li>Phone no: +91 8892075276 ,+91 8660193339</li>
-                            <li>E-mail: apitotechnologies@gmail.com</li>
-    
-                        </ul>
-                    </fieldset>
-                </div>
-            </div>
-        </div>
-    
-        <hr class="mt-2 mb-3" />
-        <div class="bs-example">
-            <div class="bg-warning d-flex justify-content-between">
-                <div>Owned And Maintained By: Karnataka State co-operative
-                    Federation Ltd.,</div>
-                <div>Designed and Deveploed By: www.apito.in</div>
-            </div>
-        </div>
-        
+							<div class="form-group">
+								<label for="exampleInputEmail1">Preference of center: </select> <span
+									id="e_poc" th:text="${applicationDetailes.preOfCenter}"></span>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Name of the
+									candidate/ಅರ್ಜಿದಾರರ ಹೆಸರು: </label> <span id="e_name"
+									th:text="${applicationDetailes.name}"></span>
+							</div>
+							<div class="form-group">
+								<label> Father's Name/ ತಂದೆಯ ಹೆಸರು: </label> <span id="e_father"
+									th:text="${applicationDetailes.fatherName}"></span>
+							</div>
+							<div class="form-group">
+								<label>Mother's Name/ ತಾಯಿಯ ಹೆಸರು: </label> <span id="e_mother"
+									th:text="${applicationDetailes.motherName}"></span>
+							</div>
+							<div class="form-group">
+								<label>Gender: </label> </select> <span id="e_sex"
+									th:text="${applicationDetailes.gender}"></span>
+							</div>
+							<div class="form-group">
+								<label>D.O.B/ಹುಟ್ತಿದ ದಿನ: </label> <span id="e_dob"
+									th:text="${applicationDetailes.dob}"></span>
+							</div>
+							<div class="form-group">
+								<label>Age/ವಯಸ್ಸು: </label> <span id="e_age"
+									th:text="${applicationDetailes.age}"></span>
+							</div>
+							<div class="form-group">
+								<label>Religion/ಧರ್ಮ:</label> <span id="e_religion"
+									th:text="${applicationDetailes.religion}"></span>
+							</div>
+							<div class="form-group">
+								<label>Caste/ಜಾತಿ: </label> <span id="e_caste"
+									th:text="${applicationDetailes.caste}"></span>
+							</div>
+							<div class="form-group">
+								<label>Nationality/ರಾಷ್ಟ್ರೀಯತೆ: </label> <span
+									id="e_nationality" th:text="${applicationDetailes.nationality}"></span>
+							</div>
+							<div class="form-group">
+								<label>Residential Address/ವಾಸಸ್ಥಳದ ವಿಳಾಸ: </label> <span
+									id="e_address" th:text="${applicationDetailes.resAddress}"></span>
+							</div>
+							<div class="form-group">
+								<label>Pincode/ಅಂಚೆ: </label> <span id="e_pincode"
+									th:text="${applicationDetailes.pincode}"></span>
+							</div>
+							<div class="form-group">
+								<label>E-Mail Address/ಇಮೇಲ್ ವಿಳಾಸ: </label> <span id="e_email"
+									th:text="${applicationDetailes.email}"></span>
+							</div>
+
+							<div class="form-group">
+								<h3>SSLC/ಎಸ್ಎಸ್ಎಲ್ಸಿ</h3>
+							</div>
+							<div class="form-group">
+								<label>Name of Institution/ Board/ University: </label> <span
+									id="e_sslc_institution"
+									th:text="${applicationDetailes.sslcInstitution}"></span>
+							</div>
+							<div class="form-group">
+								<label>Passing Year: </label> <span id="e_sslc_pass"
+									th:text="${applicationDetailes.sslcPassingYearMonth}"></span>
+							</div>
+							<div class="form-group">
+								<label>Total Marks: </label> <span id="e_sslc_marks"
+									th:text="${applicationDetailes.sslcTotalMarks}"></span>
+							</div>
+							<div class="form-group">
+								<label>Percentage(%) of Marks: </label> <span
+									id="e_sslc_percentage"
+									th:text="${applicationDetailes.sslcPercentage}"></span>
+							</div>
+							<div class="form-group">
+								<label>Upload MarksCard/Certificate: </label> <span
+									id="e_sslc_certificate"></span>
+							</div>
+							<div class="form-group">
+								<h3>PUC or Diploma/ಪಿಯು ಅಥವಾ ಡಿಪ್ಲೊಮಾ</h3>
+							</div>
+							<div class="form-group">
+								<label>Name of Institution/ Board/ University:</label>
+							</div>
+							<div class="form-group">
+								<label>Passing Year</label>
+							</div>
+							<div class="form-group">
+								<label>Total Marks: </label>
+
+								<!-- <label>(Obtained/Total): </label> -->
+							</div>
+							<div class="form-group">
+								<label>Percentage(%) of Marks: </label>
+							</div>
+							<div class="form-group">
+								<label>MarksCard/Certificate: </label> <span
+									id="e_puc_certificate"
+									th:text="${applicationDetailes.nationality}"></span>
+							</div>
+							<div class="form-group">
+								<h3>Under Graduation/ಪದವಿ:</h3>
+							</div>
+							<div class="form-group">
+								<label>Name of Institution/ Board/ University:</label>
+							</div>
+							<div class="form-group">
+								<label>Passing Year: </label>
+							</div>
+							<div class="form-group">
+								<label>Total Marks:</label>
+
+
+							</div>
+							<div class="form-group">
+								<label>Percentage(%) of Marks:</label>
+							</div>
+							<div class="form-group">
+								<label>MarksCard/Certificate:</label> <span
+									id="e_ug_certificate"></span>
+							</div>
+							<div class="form-group">
+								<h3>Post Graduation/ಸ್ನಾತಕೋತ್ತರ ಪದವಿ</h3>
+							</div>
+							<div class="form-group">
+								<label>Name of Institution/ Board/ University:</label>
+							</div>
+							<div class="form-group">
+								<label>Passing Year:</label>
+
+							</div>
+							<div class="form-group">
+								<label>Total Marks:</label>
+
+
+							</div>
+							<div class="form-group">
+								<label>Percentage(%) of Marks:</label>
+							</div>
+							<div class="form-group">
+								<label>MarksCard/Certificate:</label> <span
+									id="e_pg_certificate"></span>
+							</div>
+							<div class="form-group">
+								<label>Name of Deputy Society/ಡೆಪ್ಯೂಟಿ ಸೊಸೈಟಿಯ ಹೆಸರ: </label> <span
+									id="e_deputy_scoiety"
+									th:text="${applicationDetailes.societyName}"></span>
+							</div>
+							<div class="form-group">
+								<label>Designation/ಹುದ್ದೆ: </label> <span id="e_designation"
+									th:text="${applicationDetailes.designation}"></span>
+							</div>
+							<div class="form-group">
+								<label> Date of Appointment/ನೇಮಕಾತಿ ದಿನಾಂಕದೆ:</label> <span
+									id="e_doa" th:text="${applicationDetailes.doa}"></span>
+							</div>
+							<div class="form-group">
+								<label>Period Of Service/ಸೇವೆಯ ಅವಧಿ: </label> <span
+									id="e_period_of_service"
+									th:text="${applicationDetailes.societyPreOfService}"></span>
+							</div>
+							<div class="form-group">
+								<label>Office Address/ವಿಳಾಸ*</label> <span id="e_office_address"
+									th:text="${applicationDetailes.societAddress}"></span>
+
+							</div>
+							<div class="form-group">
+								<label>Office Phone Number/ದೂರವಾಣಿ ಸಂಖ್: </label> <span
+									id="e_phone_number_office"
+									th:text="${applicationDetailes.societyTelNumber}"></span>
+							</div>
+							<div class="form-group">
+								<label>Office Pincode/ಪಿನ್ಕೋಡ್: </label> <span
+									id="e_pincode_office"
+									th:text="${applicationDetailes.societyPincode}"></span>
+							</div>
+
+							<div class="form-group">
+								<label>Photo: </label> <a
+									th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
+								<span id="e_photo"></span>
+							</div>
+							<div class="form-group">
+								<label>Address Proof: </label> <a
+									th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
+								<span id="e_address12"></span>
+							</div>
+							<div class="form-group">
+								<label>Employee Certificate:</label> <a
+									th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
+								<span id="e_empolyee"></span>
+							</div>
+							<div class="form-group">
+								<label>NOC Certificate:</label> <a
+									th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
+								<span id="e_noc"></span>
+							</div>
+							<div class="form-group">
+								<label>Signature: </label> <a
+									th:href="@{|/download?photoFile=${applicationDetailes.photoFileName}|}">View</a>
+								<span id="e_sig"></span>
+							</div>
+
+							<button type="button" class="btn btn-danger" id="buttonReject">Reject</button>
+							<button type="button" id="buttonAccept"
+								class="btn btn-success">Accept</button>
+							<button class="btn btn-info" href="#">Go Back</button>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-2 custRightDivMD">
+				<fieldset class="border">
+					<legend class='text-left'>Help Line</legend>
+					<ul>
+						<li>Phone no: +91 8892075276 ,+91 8660193339</li>
+						<li>E-mail: apitotechnologies@gmail.com</li>
+
+					</ul>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+
+	<hr class="mt-2 mb-3" />
+	<div class="bs-example">
+		<div class="bg-warning d-flex justify-content-between">
+			<div>Owned And Maintained By: Karnataka State co-operative
+				Federation Ltd.,</div>
+			<div>Designed and Deveploed By: www.apito.in</div>
+		</div>
+	</div>
+	
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Comments*</label>
+				<textarea id="comments" name="comments" rows="3"
+					class="form-control" 
+					placeholder="Comments"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="confirmCancel">Close</button>
+        <button type="button" class="btn btn-primary" id="confirmOk">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal successModal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div id="successModalLabel"></div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="successOk">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script th:inline="javascript">
 /*<![CDATA[*/
-        function acceptData(type){
-        	let adminId = '1';
-        	let applicantNo = [[${applicationDetailes.applicantNumber}]]
-        	let comment = 'All the best';
-        	
-        	$.ajax({
+	
+     $('#buttonAccept').on('click', function(e){
+    	  let msg = "Confirm Accept?"
+    		confirmDialog(msg, function(){
+    			acceptDataAction('A');
+    		});
+    	});
+    
+     $('#buttonReject').on('click', function(e){
+     	let msg = "Confirm Reject?"
+   		confirmDialog(msg, function(){
+   			acceptDataAction('R');
+   		});
+   	});
+     
+     function confirmDialog(message, onConfirm){
+  	    var fClose = function(){
+  			  modal.modal("hide");
+  			  //window.location.href='/list;
+  	    };
+  	    var modal = $("#confirmModal");
+  	    modal.modal("show");
+  	    $("#exampleModalLabel").html(message);
+  	    $("#confirmOk").unbind().one('click', onConfirm).one('click', fClose);
+  	    $("#confirmCancel").unbind().one("click", fClose);
+      }
+     
+     function successDialog(message, onConfirm){
+ 	    var fClose = function(){
+ 			  modal.modal("hide");
+ 	    };
+ 	    var modal = $("#successModal");
+ 	    modal.modal("show");
+ 	    $("#successModalLabel").html(message);
+ 	    $("#successOk").unbind().one('click', onConfirm).one('click', fClose);
+     }
+      
+     function acceptDataAction(type){
+     	let adminId = '1';
+     	let applicantNo = [[${applicationDetailes.applicantNumber}]]
+     	let comment = $('#comments').val();
+     	$.ajax({
 				type : 'POST',
 				url : "/acceptViewData?adminId="+adminId+"&applicantNo="+applicantNo+"&status="+type+"&comment="+comment,
 				contentType : "application/json; charset=utf-8",
@@ -342,13 +432,31 @@
 					
 				},
 				success : function(result) {
-					alert('Success');
-					window.location.href='/list';
+					if(result.TYPE == 'R') {
+						let message = "Application Successfully Rejected";
+						successDialog(message, function(){
+				  		});
+					}else {
+						let message = "Application Successfully Accepted";
+						successDialog(message, function(){
+				  		});
+					}
+					
 				}
 			});
-        }
-        
-        /*]]>*/
-        </script>
-    	</body>
-      </html>
+     }
+
+    let appStatus = [[${applicationDetailes.applicationStatus}]];
+     
+    if(appStatus != 'I') {
+		 $('#buttonAccept').remove();
+		 $('#buttonReject').remove();
+	}
+     
+    
+     
+ /*]]>*/
+</script>
+
+</body>
+</html>

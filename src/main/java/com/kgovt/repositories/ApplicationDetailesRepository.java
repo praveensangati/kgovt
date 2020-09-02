@@ -20,5 +20,8 @@ public interface ApplicationDetailesRepository extends JpaRepository<Application
 	
 	List<ApplicationDetailes> findByPreOfCenter(String preOfCenter);
 	
+	@Query(value = "SELECT a from ApplicationDetailes a where a.preOfCenter=?1 and a.applicationStatus=?2")
+	List<ApplicationDetailes> getByNames(String preOfCenter, String applicationStatus);
+	
 	
 }

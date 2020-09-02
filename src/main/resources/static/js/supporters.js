@@ -1,117 +1,108 @@
-let headerhtml= `
-<span id="modalHTml"></span>
-<span id="waringId"></span>
-    <div class="row">
-    <div class="col-md-12 d-none d-sm-none d-md-block headerDiv">
-      <img src="img/logo1.jpg">
-       <p class="font-weight-normal" style="font-size:7ch; text-align:center;"> Karnataka State co-operative Federation Ltd.,</p>
-      <p style="text-align:center; font-size: medium; color: rgb(121, 171, 236);"> Diploma in Co-operative Management (Distance Education)</p>
-     </div>
-  </div>
+let headerhtml= '';
+headerhtml += '<span id="modalHTml"></span>';
+headerhtml += '<span id="waringId"></span>';
+headerhtml +=' <div class="row">';
+headerhtml += ' <div class="col-md-12 d-none d-sm-none d-md-block headerDiv">';
+headerhtml += '   <img src="/img/logo1.jpg">';
+headerhtml += '   <p class="font-weight-normal" style="font-size:7ch; text-align:center;"> Karnataka State co-operative Federation Ltd.,</p>';
+headerhtml += '   <p style="text-align:center; font-size: medium; color: rgb(121, 171, 236);"> Diploma in Co-operative Management (Distance Education)</p>';
+headerhtml += '   </div>';
+headerhtml += ' </div>';
 
- <!--Nav bar-->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNav" aria-controls="navbarNav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="/">Home
-							Page</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#modalAbandonedCart" href="/new">Apply
-							Online</a></li>
-					<li class="nav-item"><a class="nav-link" href="/status">Status</a></li>
-					<li class="nav-item"><a class="nav-link" href="/contact">Contact
-							Us</a></li>
-				</ul>
-			</div>
-			<button type="button" id="changetabbutton9" onclick="location.href='/admin';" class="btn btn-success ">Admin Login</button>
-		</nav>`;
-let footerhtml= `<hr class="mt-2 mb-3"/> 
-  <div class="bs-example">
-    <div class="bg-warning d-flex justify-content-between">
-        <div>&nbsp&nbspOwned And Maintained By: Karnataka State co-operative Federation Ltd., </div>
-        <div>Designed and Deveploed By: www.apito.in&nbsp&nbsp</div>
-    </div>
-</div>`;
-let righthtml= `<ul>
-    <li>
-      Phone no: +91 8892075276
-       ,+91 8660193339  
-    </li>
-    <li>
-      E-mail: apitotechnologies@gmail.com
-    </li>
-   
-  </ul>`;
-let lefthtml= `<ul>
-	<li><a href="./resource/Noc or Deputing Letter.pdf" rel="nofollow">
-			NOC template</a></li>
-	<li><a href="./resource/Service Certificate.pdf" rel="nofollow">
-			Service Certificate template</a></li>
-	<li><a href="/offline">Offline Application Form</a></li>
-</ul>`;
-let warningHtml= `<div class="modal fade right" id="modalAbandonedCart" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-		data-backdrop="false">
-		<div
-			class="modal-dialog modal-side modal-bottom-right modal-notify modal-info"
-			role="document">
-			<!--Content-->
-			<div class="modal-content">
-				<!--Header-->
-				<div class="modal-header">
-					<p class="heading" style="padding-left: 10%;">
-					<h2>WARNING!!!</h2>
-					</p>
+headerhtml += '		<nav class="navbar navbar-expand-lg navbar-dark bg-warning orange">';
+headerhtml += '			<button class="navbar-toggler" type="button" data-toggle="collapse" ';
+headerhtml += '				data-target="#navbarNav" aria-controls="navbarNav" ';
+headerhtml += '				aria-expanded="false" aria-label="Toggle navigation"> ';
+headerhtml += '				<span class="navbar-toggler-icon"></span>';
+headerhtml += '			</button>';
+headerhtml += '			<div class="collapse navbar-collapse" id="navbarNav">';
+headerhtml += '				<ul class="navbar-nav">';
+headerhtml += '					<li class="nav-item"><a class="nav-link" href="/">Home';
+headerhtml += '							Page</a></li>';
+headerhtml += '					<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#modalAbandonedCart" href="/new">Apply';
+headerhtml += '							Online</a></li>';
+headerhtml += '					<li class="nav-item"><a class="nav-link" href="/status">Status</a></li>';
+headerhtml += '					<li class="nav-item"><a class="nav-link" href="/contact">Contact';
+headerhtml += '							Us</a></li>';
+headerhtml += '				</ul>';
+headerhtml += '			</div>';
+headerhtml += '			<button type="button" id="changetabbutton9" onclick="adminLoginCall();" class="btn btn-success ">Admin Login</button>';
+headerhtml += '		</nav>';
 
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true" class="white-text">&times;</span>
-					</button>
-				</div>
+let footerhtml= '';
+footerhtml += '	<hr class="mt-2 mb-3"/> ';
+footerhtml += '  <div class="bs-example">';
+footerhtml += '    <div class="bg-warning d-flex justify-content-between">';
+footerhtml += '        <div>&nbsp&nbspOwned And Maintained By: Karnataka State co-operative Federation Ltd., </div>';
+footerhtml += '        <div>Designed and Deveploed By: www.apito.in&nbsp&nbsp</div>';
+footerhtml += '    </div>';
+footerhtml += '</div>';
 
-				<!--Body-->
-				<div class="modal-body">
+let righthtml= '<ul><li>Phone no: +91 8892075276,+91 8660193339</li><li>E-mail: apitotechnologies@gmail.com</li></ul>';
 
-					<div class="row">
-						<div class="col-3">
-							<p></p>
-							<p class="text-center">
-								<i class="fas fa-shopping-cart fa-4x"></i>
-							</p>
-						</div>
+let lefthtml= '';
+lefthtml += '<ul>';
+lefthtml += '	<li><a href="./resource/Noc or Deputing Letter.pdf" rel="nofollow">';
+lefthtml += '			NOC template</a></li>';
+lefthtml += '	<li><a href="./resource/Service Certificate.pdf" rel="nofollow">';
+lefthtml += '			Service Certificate template</a></li>';
+lefthtml += '	<li><a href="/offline">Offline Application Form</a></li>';
+lefthtml += '</ul>';
 
-						<div>
-							<p style="padding-left: 10%;"> Please keep the following documents
-								scanned in required format and please keep the
-								restricted file to 1mb</p>
-								
-							   <ul>
-					              <li>NOC</li>
-					              <li>Photo Copy</li>
-					              <li>Signature</li>
-					              <li>Address Proof</li>
-					              <li>Employee Certificate</li>
-					            </ul>	
-						</div>
-					</div>
-				</div>
+let warningHtml= '';
+warningHtml += '<div class="modal fade right" id="modalAbandonedCart" tabindex="-1" ';
+warningHtml += '		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ';
+warningHtml += '		data-backdrop="false"> ';
+warningHtml += '		<div ';
+warningHtml += '			class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" ';
+warningHtml += '			role="document"> ';
+warningHtml += '			<div class="modal-content"> ';
+warningHtml += '				<div class="modal-header"> ';
+warningHtml += '					<p class="heading" style="padding-left: 10%;"> ';
+warningHtml += '					<h2>WARNING!!!</h2>';
+warningHtml += '					</p>';
+warningHtml += '					<button type="button" class="close" data-dismiss="modal"';
+warningHtml += '						aria-label="Close">';
+warningHtml += '						<span aria-hidden="true" class="white-text">&times;</span>';
+warningHtml += '					</button>';
+warningHtml += '				</div>';
+warningHtml += '				<div class="modal-body">';
+warningHtml += '					<div class="row">';
+warningHtml += '						<div class="col-3">';
+warningHtml += '							<p></p>';
+warningHtml += '							<p class="text-center">';
+warningHtml += '								<i class="fas fa-shopping-cart fa-4x"></i>';
+warningHtml += '							</p>';
+warningHtml += '						</div>';
+warningHtml += '						<div>';
+warningHtml += '							<p style="padding-left: 10%;"> Please keep the following documents';
+warningHtml += '								scanned in required format and please keep the';
+warningHtml += '								restricted file to 1mb</p>';
+warningHtml += '							   <ul>';
+warningHtml += '					              <li>NOC</li>';
+warningHtml += '					              <li>Photo Copy</li>';
+warningHtml += '					              <li>Signature</li>';
+warningHtml += '					              <li>Address Proof</li>';
+warningHtml += '					              <li>Employee Certificate</li>';
+warningHtml += '					            </ul>	';
+warningHtml += '						</div>';
+warningHtml += '					</div>';
+warningHtml += '				</div>';
+warningHtml += '				<div class="modal-footer justify-content-center">';
+warningHtml += '					<a type="button" class="btn btn-info" href="/new">Proceed</a>';
+warningHtml += '					<a type="button" class="btn btn-outline-info waves-effect"';
+warningHtml += '						data-dismiss="modal" href="#">Cancel</a>';
+warningHtml += '				</div>';
+warningHtml += '			</div>';
+warningHtml += '		</div>';
+warningHtml += '	</div>';
 
-				<!--Footer-->
-				<div class="modal-footer justify-content-center">
-					<a type="button" class="btn btn-info" href="/new">Proceed</a>
-					<a type="button" class="btn btn-outline-info waves-effect"
-						data-dismiss="modal" href="#">Cancel</a>
-				</div>
-			</div>
-			<!--/.Content-->
-		</div>
-	</div>`;
 $('#headerId').html(headerhtml);
 $('#footerId').html(footerhtml);
 $('#leftId').html(lefthtml);
 $('#rightId').html(righthtml);
 $('#waringId').html(warningHtml);
+
+function adminLoginCall(){
+window.location.href='/admin';
+}

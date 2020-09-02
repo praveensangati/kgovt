@@ -3,6 +3,7 @@ package com.kgovt.services;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -131,15 +132,12 @@ public class ApplicationDetailesService extends AppConstants {
 			if (null == applicantNumber) {
 				applicantNumber = 100001l;
 				applicationDetailes.setApplicantNumber(applicantNumber);
-				System.out.print(applicantNumber);
 			} else {
 				applicationDetailes.setApplicantNumber(applicantNumber + 1);
-				System.out.print(applicantNumber + 1);
 			}
 
 			System.out.print(applicationDetailes.getDob());
-			applicationDetailes.setAddressProofType("PAN");
-			applicationDetailes.setApplicationStatus("1");
+			applicationDetailes.setApplicationStatus("I");
 			applicationDetailes.setCreationDate(new Date());
 			applicationDetailes = saveApplicationDetailes(applicationDetailes);
 		} catch (Exception e) {
@@ -220,10 +218,14 @@ public class ApplicationDetailesService extends AppConstants {
 
 	private static final Comparator<ApplicationDetailes> EMPTY_COMPARATOR = (e1, e2) -> 0;
 
-	public Page<ApplicationDetailes> getApplicationDetailess(PagingRequest pagingRequest,String region) {
+	public Page<ApplicationDetailes> getApplicationDetailess(PagingRequest pagingRequest,String region, String applicationStatus) {
 		try {
-			List<ApplicationDetailes> applicationDetailess = applicationDetailesRepository.findByPreOfCenter(region);
-
+			List<ApplicationDetailes> applicationDetailess = new ArrayList<>();
+			if(AppUtilities.isNotNullAndNotEmpty(applicationStatus)) {
+				applicationDetailess = applicationDetailesRepository.getByNames(region, applicationStatus);
+			}else {
+				applicationDetailess = applicationDetailesRepository.findByPreOfCenter(region);
+			}
 			return getPage(applicationDetailess, pagingRequest);
 
 		} catch (Exception e) {

@@ -35,10 +35,6 @@ public class Admin implements Serializable,Cloneable{
 	@Column(name = "record_id")
 	private Long recordId;
 	
-	
-	@Column(name = "admin_name")
-	private String adminName;
-	
 	@Column(name="password")
 	private String password;
 	

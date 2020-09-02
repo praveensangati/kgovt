@@ -46,9 +46,6 @@ public class ApplicationDetailes implements Serializable, Cloneable {
 	@Column(name = "address_file_name")
 	private String addressFileName;
 	
-	@Column(name = "address_proof_type")
-	private String addressProofType;
-	
 	private Integer age;
 	
 	@Column(name = "applicant_number")

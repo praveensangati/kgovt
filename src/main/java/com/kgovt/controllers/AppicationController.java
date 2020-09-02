@@ -82,26 +82,29 @@ public class AppicationController extends AppConstants {
 		return "contact";
 	}
 
-	@GetMapping("/adminLogin")
+	@PostMapping("/adminLogin")
 	public String adminView(Model model,Admin admin) {
 		//Admin obj =  adminService.findByAdminName(admin.getAdminName());
 		Admin obj= adminService.findByRegion(admin.getRegion());
-		if(obj.getPassword().equalsIgnoreCase(admin.getPassword())) {
+		if(null!=obj && obj.getPassword().equalsIgnoreCase(admin.getPassword())) {
 			model.addAttribute("region", admin.getRegion());
 		}else {
 			model.addAttribute("error", "1");
+			return "adminlogin";
 		}
 		return "application_list";
 	}
+	
+	
 	@GetMapping("/saveAdmin")
 	public String saveAdmin() {
 		Admin admin =new Admin();
-		admin.setAdminName("Arun");
 		admin.setPassword("Arun");
 		admin.setRegion("Dharwad");
 		adminService.saveAdmin(admin);
 		return "";
 	}
+	
 	@GetMapping("/list")
 	public String applicationlistPage() {
 		return "application_list";
@@ -110,7 +113,6 @@ public class AppicationController extends AppConstants {
 	@GetMapping("/admin")
 	public String admin(Model model) {
 		model.addAttribute("admin", new Admin());
-		model.addAttribute("error", "0");
 		return "adminlogin";
 	}
 
@@ -174,22 +176,32 @@ public class AppicationController extends AppConstants {
 	public Map appectedData(@RequestParam Long adminId, @RequestParam Long applicantNo,@RequestParam String status,@RequestParam String comment) {
 		HashMap<String, Object> returnData = new HashMap<>();
 		returnData.put("ERROR", "0");
-		Status stat=statusService.findByApplicantNumber(applicantNo);
-		stat.setStatus(status);
-		stat.setComment(comment);
-		statusService.saveStatus(stat);
-		//statusService.setStatusByApplicantNumber(status, comment,applicantNo);
-		if(status.equals("A")) {
-			AcceptedCandidates acceptedCandidated = new AcceptedCandidates();
-			acceptedCandidated.setAdminId(adminId);
-			acceptedCandidated.setApplicantNumber(applicantNo);
-			acceptedCandidated.setPassword(AppUtilities.generateCommonLangPassword());
-			acceptedService.saveAcceptedCandidates(acceptedCandidated);
-			returnData.put("ERROR", "0");
+		returnData.put("TYPE", status);
+		try {
+			// update aap details
+			ApplicationDetailes appDetails = appicationService.findByApplicantNumber(applicantNo);
+			appDetails.setApplicationStatus(status);
+			appicationService.saveApplicationDetailes(appDetails);
+			//update status
+			Status stat=statusService.findByApplicantNumber(applicantNo);
+			stat.setStatus(status);
+			stat.setComment(comment);
+			statusService.saveStatus(stat);
+			// update accept
+			if(status.equals("A")) {
+				AcceptedCandidates acceptedCandidated = new AcceptedCandidates();
+				acceptedCandidated.setAdminId(adminId);
+				acceptedCandidated.setApplicantNumber(applicantNo);
+				acceptedCandidated.setPassword(AppUtilities.generateCommonLangPassword());
+				acceptedService.saveAcceptedCandidates(acceptedCandidated);
+				returnData.put("ERROR", "0");
+			}			
+		}catch(Exception e) {
+			returnData.put("ERROR", e);
 		}
 		return returnData;
-		
 	}
+	
 	@PostMapping(value = "/checkStatus", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
@@ -284,10 +296,10 @@ public class AppicationController extends AppConstants {
 				logger.info("Exception of Payement save started");
 				Status appStatus = new Status();
 				appStatus.setApplicantNumber(paymentDetails.getApplicantNumber());
-				appStatus.setStatus("In Verification");
+				appStatus.setStatus("I");
 				appStatus.setMobile(paymentDetails.getMobile());
 				appStatus.setAppliedDate(new Date());
-				appStatus.setComment("In verification");
+				appStatus.setComment("created by System");
 				statusService.saveStatus(appStatus);
 
 			} catch (Exception e) {
