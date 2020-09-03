@@ -1,0 +1,195 @@
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" crossorigin="anonymous" >
+<link th:rel="stylesheet" th:href="@{/css/style1.css}" crossorigin="anonymous" />
+<link th:rel="stylesheet" th:href="@{/css/yearpicker.css}" crossorigin="anonymous" />
+<title>Karnataka State co-operative Federation Ltd.</title>
+<link rel="icon" th:href="@{img/logo1.jpg}" type="image/x-icon">
+</head>
+
+<body>
+	
+	<div class="container-fluid">
+		<!--header and Nav bar here-->
+		<div id="headerId"></div>
+		<div class="row">
+			<!--Left panel-->
+			<div class="col-md-2 custLeftDivMD">
+				<fieldset class="border">
+					<legend class='text-left'>Downloads</legend>
+					<div id="leftId"></div>
+				</fieldset>
+			</div>
+			
+			<!-- Start of center-->
+			<div id="centerContent" class="col-md-8 custCentDivMD overflow-auto">
+				<div class="card text-center">
+					<div class="card-header">
+						<ul id="mytabs" class="nav nav-tabs card-header-tabs pull-right"
+							role="tablist">
+							<li class="nav-item"><a class="nav-link "
+								id="declaration-tab" href="#declaration">Declaration</a></li>
+						</ul>
+					</div>
+					<form th:action="@{/finalPay}" class="form-horizontal" role="form"
+						method="POST" enctype="multipart/form-data" onkeypress="return disableEnterKey(event)">
+						<div class="card-body">
+							<div class="tab-content" id="myTabContent"
+								style="text-align: left;">
+								
+								<div id="declaration" 
+									aria-labelledby="declaration-tab">
+									Declaration
+									<div class="form-group">
+										<input type="checkbox" class="form-check-input" id="declare"
+											name="declarationAccepted"> <label for="declare">I
+											here by declare that all the above documents and information
+											provided are true</label>
+									</div>
+									<button type="button" id="changetabbutton9"
+										class="btn btn-success ">Prev</button>
+									<button type="submit" id="changetabbutton5"
+										class="btn btn-primary ">Make Payment</button>
+								</div>
+							</div>
+						</div>
+				</div>
+				</form>
+			</div>
+
+				<div class="col-md-2 custRightDivMD">
+				<fieldset class="border">
+					<legend class='text-left'>Help Line</legend>
+					<div id="rightId"></div>
+				</fieldset>
+			</div>
+		</div>
+		<!-- footer here-->
+		<div id="footerId"></div>
+
+	</div>
+	
+	<script type="text/javascript">
+		
+		function validateMobile() {
+			let mobileNo = $('#mobile_number').val();
+			if (mobileNo) {
+				if (/^[1-9][0-9]{9}$/.test(mobileNo) && mobileNo.length == 10) {
+					$
+							.ajax({
+								type : 'POST',
+								url : "/validateMobile?mobileNumber="
+										+ mobileNo,
+								contentType : "application/json; charset=utf-8",
+								data : {},
+								success : function(result) {
+									if (result == '1') {
+										$('#e_mobile').hide();
+										$('#mobile_number').focus();
+										let mblumber = $('#mobile_number').val(); 
+										$('#mobile_number').val('');
+										initialDisable();
+										$('#modalHTml').html(statusHTML);
+										let msg = 'Application has been submitted with the mobile number '+mblumber+'. Please check status for update';
+										$('#applicantReg').html(msg);
+										$('#applicationStatus').modal('show');
+									} else {
+										$("#personal :input").each(function() {
+											$(this).prop('disabled', false);
+										});
+									}
+								}
+							});
+					document.getElementById('e_mobile').innerHTML = "";
+				} else {
+					
+					$('#mobile_number').focus();
+					$('#mobile_number').val('');
+					document.getElementById('e_mobile').innerHTML = "**Enter a valid Mobile Number";
+					document.getElementById('e_mobile').style.color = 'red';
+					
+				}
+			}
+		}
+
+		function initialDisable() {
+			$("#declaration :input").each(function() {
+				$(this).prop('disabled', true);
+			});
+			
+		}
+		initialDisable();
+	</script>
+	
+	<script type="text/javascript"> 
+    let statusHTML = `<div class="modal fade right" id="applicationStatus" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="false">
+		<div
+			class="modal-dialog modal-side modal-bottom-right modal-notify modal-info"
+			role="document">
+			<!--Content-->
+			<div class="modal-content">
+				<!--Header-->
+				<div class="modal-header">
+					<p class="heading" style="padding-left: 10%;">
+					<h2>Already Registered.!!!</h2>
+					</p>
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true" class="white-text">&times;</span>
+					</button>
+				</div>
+
+				<!--Body-->
+				<div class="modal-body">
+
+					<div class="row">
+						<div class="col-3">
+							<p></p>
+							<p class="text-center">
+								<i class="fas fa-shopping-cart fa-4x"></i>
+							</p>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item"><span
+								id="applicantReg"></span>
+							</li>
+						</ul>
+						<div></div>
+					</div>
+				</div>
+
+				<!--Footer-->
+				<div class="modal-footer justify-content-center">
+					<!-- <a type="button" class="btn btn-info" href="form.html">Proceed</a>   -->
+					<h3>Help Line</h3>
+					<ul>
+						<li><small>Phone no: +91 8892075276,+91
+								8660193339</small></li>
+						<li><small>E-mail: apitotechnologies@gmail.com</small></li>
+					</ul>
+					<br> <a type="button"
+						class="btn btn-outline-info waves-effect"
+						data-dismiss="modal" href="#">Cancel</a>
+				</div>
+			</div>
+
+		</div>`;
+
+</script>
+
+</body>
+<script th:src="@{/js/jquery-3.5.1.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/popper.min.js}" crossorigin="anonymous"></script> 
+<script th:src="@{/js/bootstrap.min.js}" crossorigin="anonymous"></script> 
+<script th:src="@{/js/validation.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/inputmask.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/input_validation.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/yearpicker.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/supporters.js}" crossorigin="anonymous"></script></html>
+</html>

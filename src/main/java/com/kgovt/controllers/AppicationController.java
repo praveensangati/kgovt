@@ -54,10 +54,10 @@ public class AppicationController extends AppConstants {
 
 	@Autowired
 	private ApplicationDetailesService appicationService;
-	
+
 	@Autowired
 	private AdminService adminService;
-	
+
 	@Autowired
 	private AcceptedService acceptedService;
 
@@ -66,9 +66,9 @@ public class AppicationController extends AppConstants {
 
 	@Autowired
 	private StatusService statusService;
-	
+
 	@Autowired
-    private ServletContext servletContext;
+	private ServletContext servletContext;
 
 	private static final String HMAC_SHA256_ALGORITHM = "HmacSHA256";
 
@@ -83,28 +83,32 @@ public class AppicationController extends AppConstants {
 	}
 
 	@PostMapping("/adminLogin")
-	public String adminView(Model model,Admin admin) {
-		//Admin obj =  adminService.findByAdminName(admin.getAdminName());
-		Admin obj= adminService.findByRegion(admin.getRegion());
-		if(null!=obj && obj.getPassword().equalsIgnoreCase(admin.getPassword())) {
+	public String adminView(Model model, Admin admin) {
+		// Admin obj = adminService.findByAdminName(admin.getAdminName());
+		Admin obj = adminService.findByRegion(admin.getRegion());
+		if (null != obj && obj.getPassword().equalsIgnoreCase(admin.getPassword())) {
 			model.addAttribute("region", admin.getRegion());
-		}else {
+		} else {
 			model.addAttribute("error", "1");
 			return "adminlogin";
 		}
 		return "application_list";
 	}
 	
-	
+	@PostMapping("/userLogin")
+	public String userView(Model model,ApplicationDetailes appDetailes) {
+		return "userhome";
+	}
+
 	@GetMapping("/saveAdmin")
 	public String saveAdmin() {
-		Admin admin =new Admin();
+		Admin admin = new Admin();
 		admin.setPassword("Arun");
-		admin.setRegion("Dharwad");
+		admin.setRegion("Mysuru");
 		adminService.saveAdmin(admin);
 		return "";
 	}
-	
+
 	@GetMapping("/list")
 	public String applicationlistPage() {
 		return "application_list";
@@ -114,6 +118,12 @@ public class AppicationController extends AppConstants {
 	public String admin(Model model) {
 		model.addAttribute("admin", new Admin());
 		return "adminlogin";
+	}
+
+	@GetMapping("/user")
+	public String userView(Model model) {
+		model.addAttribute("user", new AcceptedCandidates());
+		return "userlogin";
 	}
 
 	@GetMapping("/viewAppData")
@@ -171,9 +181,11 @@ public class AppicationController extends AppConstants {
 		}
 	}
 
-	@PostMapping(value = "/acceptViewData", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(value = "/acceptViewData", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
-	public Map appectedData(@RequestParam Long adminId, @RequestParam Long applicantNo,@RequestParam String status,@RequestParam String comment) {
+	public Map appectedData(@RequestParam Long adminId, @RequestParam Long applicantNo, @RequestParam String status,
+			@RequestParam String comment) {
 		HashMap<String, Object> returnData = new HashMap<>();
 		returnData.put("ERROR", "0");
 		returnData.put("TYPE", status);
@@ -182,26 +194,26 @@ public class AppicationController extends AppConstants {
 			ApplicationDetailes appDetails = appicationService.findByApplicantNumber(applicantNo);
 			appDetails.setApplicationStatus(status);
 			appicationService.saveApplicationDetailes(appDetails);
-			//update status
-			Status stat=statusService.findByApplicantNumber(applicantNo);
+			// update status
+			Status stat = statusService.findByApplicantNumber(applicantNo);
 			stat.setStatus(status);
 			stat.setComment(comment);
 			statusService.saveStatus(stat);
 			// update accept
-			if(status.equals("A")) {
+			if (status.equals("A")) {
 				AcceptedCandidates acceptedCandidated = new AcceptedCandidates();
 				acceptedCandidated.setAdminId(adminId);
 				acceptedCandidated.setApplicantNumber(applicantNo);
 				acceptedCandidated.setPassword(AppUtilities.generateCommonLangPassword());
 				acceptedService.saveAcceptedCandidates(acceptedCandidated);
 				returnData.put("ERROR", "0");
-			}			
-		}catch(Exception e) {
+			}
+		} catch (Exception e) {
 			returnData.put("ERROR", e);
 		}
 		return returnData;
 	}
-	
+
 	@PostMapping(value = "/checkStatus", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
@@ -233,6 +245,11 @@ public class AppicationController extends AppConstants {
 			logger.error("ERROR WHILE fetching mobile number", e.getMessage());
 		}
 		return returnData;
+	}
+	
+	@PostMapping("/finalPay")
+	public String finalPay(Model model) {
+		return "";
 	}
 
 	@PostMapping(SEPERATOR + COMMON_SAVE)
@@ -338,25 +355,27 @@ public class AppicationController extends AppConstants {
 
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	@ResponseBody
-	public  ResponseEntity<InputStreamResource>  downloadFile(@Param(value = "photoFile") String photoFile)throws IOException {
+	public ResponseEntity<InputStreamResource> downloadFile(@Param(value = "photoFile") String photoFile)
+			throws IOException {
 		if (AppUtilities.isNotNullAndNotEmpty(photoFile)) {
 			String[] fileNames = photoFile.split("_");
 			String path = fileNames[0];
 			String rootPath = System.getProperty("user.home");
-			String folderStored = rootPath + File.separator +"Uploads"+ File.separator+ path + File.separator + photoFile;
-			 File downloadFile= new File(folderStored); 
-			 //return new FileSystemResource(new File(folderStored));
-			 
-			 InputStreamResource resource = new InputStreamResource(new FileInputStream(downloadFile));
-			 MediaType mediaType = AppUtilities.getMediaTypeForFileName(this.servletContext, downloadFile.getName());
-		        return ResponseEntity.ok()
-		                // Content-Disposition
-		                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + downloadFile.getName())
-		                // Content-Type
-		                .contentType(mediaType)
-		                // Contet-Length
-		                .contentLength(downloadFile.length()) //
-		                .body(resource);
+			String folderStored = rootPath + File.separator + "Uploads" + File.separator + path + File.separator
+					+ photoFile;
+			File downloadFile = new File(folderStored);
+			// return new FileSystemResource(new File(folderStored));
+
+			InputStreamResource resource = new InputStreamResource(new FileInputStream(downloadFile));
+			MediaType mediaType = AppUtilities.getMediaTypeForFileName(this.servletContext, downloadFile.getName());
+			return ResponseEntity.ok()
+					// Content-Disposition
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + downloadFile.getName())
+					// Content-Type
+					.contentType(mediaType)
+					// Contet-Length
+					.contentLength(downloadFile.length()) //
+					.body(resource);
 		} else {
 			return null;
 		}

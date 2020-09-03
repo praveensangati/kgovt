@@ -27,6 +27,7 @@ headerhtml += '							Us</a></li>';
 headerhtml += '				</ul>';
 headerhtml += '			</div>';
 headerhtml += '			<button type="button" id="changetabbutton9" onclick="adminLoginCall();" class="btn btn-success ">Admin Login</button>';
+headerhtml += '			<button type="button" id="changetabbutton9" onclick="userLoginCall();" class="btn btn-success ">User Login</button>';
 headerhtml += '		</nav>';
 
 let footerhtml= '';
@@ -106,3 +107,7 @@ $('#waringId').html(warningHtml);
 function adminLoginCall(){
 window.location.href='/admin';
 }
+
+function userLoginCall(){
+	window.location.href='/user';
+	}
