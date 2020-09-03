@@ -34,8 +34,8 @@ $(function() {
 							flag = 1;
 						}
 
-						if (document.getElementById('password').value == '' || document.getElementById('password').value == null ) {
-							document.getElementById('password').focus();
+						if (document.getElementById('passStatus').value == '') {
+							document.getElementById('passStatus').focus();
 							document.getElementById('e_password').innerHTML = "**Enter password, field cannot be blank";
 							document.getElementById('e_password').style.color = 'red';
 							flag = 1;
